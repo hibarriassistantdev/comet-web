@@ -32,7 +32,9 @@ const packages = [
       "25,000 cold email leads",
       "300,000 monthly emails",
       "1 strategy session",
-      "250 consultation messages"
+      "250 consultation messages",
+      "10 Campaigns Google Paid Ads Management",
+      "10 Campaigns Social Media Paid Ads Management"
     ]
   },
   {
@@ -50,7 +52,9 @@ const packages = [
       "600,000 monthly emails",
       "1 strategy session",
       "1 followup strategy session",
-      "500 consultation messages"
+      "500 consultation messages",
+      "20 Campaigns Google Paid Ads Management",
+      "20 Campaigns Social Media Paid Ads Management"
     ]
   }
 ];
