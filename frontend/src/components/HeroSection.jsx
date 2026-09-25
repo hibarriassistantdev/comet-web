@@ -196,13 +196,12 @@ export default function HeroSection({ country }) {
               {/* H1 */}
               <div className="hero-h1">
                 <h2 className="text-[#ff4500] font-black uppercase leading-none tracking-tight"
-                  style={{ fontSize: 'clamp(2.4rem, 5.5vw, 4.6rem)' }}>
-                  {country.h1}
+                  style={{ fontSize: 'clamp(2.4rem, 5vw, 3.6rem)' }}>
+                  THE BACKBONE
                 </h2>
                 <h1 className="text-slate-800 font-black uppercase leading-none tracking-tight mt-1"
-                  style={{ fontSize: 'clamp(2.2rem, 5vw, 4.1rem)' }}>
-                  DIGITAL
-                  <br />MARKETING
+                  style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.1rem)' }}>
+                  OF YOUR MARKETING
                   <br />AGENCY
                 </h1>
               </div>
@@ -210,21 +209,21 @@ export default function HeroSection({ country }) {
               {/* Sub-paragraph */}
               <p className="hero-sub text-[#ff4500] font-medium leading-relaxed max-w-xl"
                 style={{ fontSize: 'clamp(0.95rem, 1.4vw, 1.15rem)' }}>
-                Don't sweat — 3 out of 10 <strong>{country.demonym}</strong> Businesses feel overwhelmed with too little staff, not much happening in marketing, and a huge base of uncontacted customers.
+                <strong>Comet is your secret back-office team.</strong> We exist to make your digital marketing offer competitive by delivering high volume output at scale, on demand.
               </p>
 
               {/* CTA buttons */}
               <div className="hero-btns flex flex-wrap gap-3 pt-1">
-                <a href="#build-your-own"
+                <a href="#book-call"
                   className="inline-block bg-[#ff4500] hover:bg-[#d93c00] text-white font-extrabold uppercase tracking-[0.15em] text-sm px-7 py-3.5 rounded-full shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl"
                   style={{ boxShadow: '0 8px 30px -6px rgba(255,69,0,0.5)' }}
                 >
-                  Get Started Free →
+                  Book a Call
                 </a>
-                <a href="#channels"
+                <a href="#pricing"
                   className="inline-block border-2 border-slate-200 hover:border-[#ff4500] text-slate-600 hover:text-[#ff4500] font-extrabold uppercase tracking-[0.12em] text-sm px-7 py-3.5 rounded-full transition-all duration-200"
                 >
-                  See How It Works
+                  See Pricing
                 </a>
               </div>
 

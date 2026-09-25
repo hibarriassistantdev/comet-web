@@ -6,6 +6,8 @@ import DailyOperationsGrid from './components/DailyOperationsGrid';
 import BigBrandsGrid from './components/BigBrandsGrid';
 import MassMarketingTech from './components/MassMarketingTech';
 import BuildYourOwnCalculator from './components/BuildYourOwnCalculator';
+import MonthlyPackages from './components/MonthlyPackages';
+import FreeDemoFooter from './components/FreeDemoFooter';
 import Footer from './components/Footer';
 import { countryData } from './data/countries';
 
@@ -15,12 +17,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans">
-      {/* 1. Dynamic Country Geo Selector */}
-      {/* <CountrySelector
-        selectedCountryCode={selectedCountryCode}
-        onSelectCountry={setSelectedCountryCode}
-      /> */}
-
       {/* 2. Navigation Header */}
       <Header />
 
@@ -30,16 +26,22 @@ export default function App() {
       {/* 4. Can Your Team Do This Every Day? (Design 2) */}
       <DailyOperationsGrid />
 
-      {/* 5. Big Brands We've Done Work For (Design 3) */}
-      <BigBrandsGrid />
-
-      {/* 6. Our Secret to Mass Marketing (Design 4) */}
+      {/* 5. Our Secret to Mass Marketing (Design 4) */}
       <MassMarketingTech />
 
-      {/* 7. BUILD YOUR OWN (Design 5) */}
+      {/* 6. BUILD YOUR OWN (Design 5) */}
       <BuildYourOwnCalculator country={country} />
 
-      {/* 8. Dynamic Footer */}
+      {/* 7. Pricing */}
+      <MonthlyPackages />
+
+      {/* 8. Big Brands We've Done Work For */}
+      <BigBrandsGrid />
+
+      {/* 9. Get a Free Demo Footer */}
+      <FreeDemoFooter />
+
+      {/* 10. Dynamic Footer */}
       {/* <Footer country={country} /> */}
     </div>
   );

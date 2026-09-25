@@ -10,7 +10,7 @@ export default function Footer({ country }) {
             <img
               src="/logo/orange-logo.png"
               alt="Comet Logo"
-              className="h-14 sm:h-20 md:h-24 lg:h-28 object-contain transition-all duration-300"
+              className="h-16 sm:h-20 md:h-24 lg:h-28 object-contain origin-left scale-[1.6] sm:scale-[1.75] md:scale-[2] transition-all duration-300"
             />
           </div>
           <p className="text-sm text-slate-400 leading-relaxed max-w-sm">

@@ -8,7 +8,7 @@ function CometBrandLogo() {
       <img
         src="/logo/orangebg-commet-logo.png"
         alt="Comet Logo"
-        className="h-14 sm:h-20 md:h-24 lg:h-32 object-contain origin-left transition-all duration-300"
+        className="h-14 sm:h-16 md:h-20 lg:h-24 object-contain origin-left scale-[1.6] sm:scale-[1.75] md:scale-[2] transition-all duration-300"
       />
     </div>
   );
@@ -26,13 +26,13 @@ export default function Header() {
 
   return (
     <header
-      className="sticky top-0 z-50 shadow-md"
+      className="sticky top-0 z-50 shadow-md flex items-center"
       style={{
         background: 'linear-gradient(90deg, #ff4500 0%, #ff6b00 55%, #ff2a00 100%)',
         height: '64px',
       }}
     >
-      <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+      <div className="max-w-7xl w-full mx-auto px-6 flex items-center justify-between">
         <CometBrandLogo />
 
         {/* Desktop nav */}
