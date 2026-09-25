@@ -6,14 +6,14 @@ export default function Footer({ country }) {
     <footer className="bg-[#0b0a0e] text-slate-400 py-16 px-6 border-t border-slate-900">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 text-left">
         <div className="md:col-span-5 space-y-4">
-          <div className="flex items-center gap-3 -ml-2">
+          <div className="relative flex items-center justify-start overflow-hidden w-36 sm:w-48 md:w-56 h-12 sm:h-14 md:h-16 -ml-2">
             <img
               src="/logo/orange-logo.png"
               alt="Comet Logo"
-              className="h-16 sm:h-20 md:h-24 lg:h-28 object-contain origin-left scale-[1.6] sm:scale-[1.75] md:scale-[2] transition-all duration-300"
+              className="absolute w-[180%] sm:w-[190%] md:w-[200%] max-w-none left-[-20%] md:left-[-25%] top-1/2 -translate-y-1/2 object-contain"
             />
           </div>
-          <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
+          <p className="text-sm text-slate-400 leading-relaxed max-w-sm mt-2">
             The premier autonomous mass marketing agency running off Diviniom, Galileo, Maillady, and Databank.
           </p>
           <div className="text-xs text-slate-500 font-mono pt-2">
