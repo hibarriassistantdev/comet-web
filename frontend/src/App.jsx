@@ -16,10 +16,10 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans">
       {/* 1. Dynamic Country Geo Selector */}
-      <CountrySelector 
-        selectedCountryCode={selectedCountryCode} 
-        onSelectCountry={setSelectedCountryCode} 
-      />
+      {/* <CountrySelector
+        selectedCountryCode={selectedCountryCode}
+        onSelectCountry={setSelectedCountryCode}
+      /> */}
 
       {/* 2. Navigation Header */}
       <Header />
@@ -40,7 +40,7 @@ export default function App() {
       <BuildYourOwnCalculator country={country} />
 
       {/* 8. Dynamic Footer */}
-      <Footer country={country} />
+      {/* <Footer country={country} /> */}
     </div>
   );
 }
