@@ -4,11 +4,11 @@ import { Menu, X } from 'lucide-react';
 // The exact Comet logo from the original designs
 function CometBrandLogo() {
   return (
-    <div className="relative flex items-center justify-start overflow-hidden w-28 sm:w-36 md:w-48 h-10 sm:h-12 md:h-14">
+    <div className="flex items-center gap-2">
       <img
         src="/logo/orangebg-commet-logo.png"
         alt="Comet Logo"
-        className="absolute w-[180%] sm:w-[190%] md:w-[200%] max-w-none left-[-20%] md:left-[-25%] top-1/2 -translate-y-1/2 object-contain"
+        className="h-14 sm:h-16 md:h-20 object-contain origin-left scale-[1.8] sm:scale-[1.75] md:scale-[2] transition-all duration-300"
       />
     </div>
   );
