@@ -17,7 +17,7 @@ export default function Footer({ country }) {
     </a>
           </div>
           <p className="text-sm text-slate-300 leading-relaxed max-w-sm">
-            Your trusted mass marketing subcontractor.
+            Built for agencies.
           </p>
           <div className="flex items-center gap-4 text-slate-400 pt-2">
             <a href="#" aria-label="Facebook" className="hover:text-white transition-colors"><span className="font-bold text-xl leading-none" aria-hidden="true">f</span></a>
@@ -39,18 +39,8 @@ export default function Footer({ country }) {
           <div className="space-y-4">
             <h4 className="text-white font-bold text-sm tracking-wide">Resources</h4>
             <ul className="space-y-3">
-              <li><a href="/#channels" className="text-sm text-slate-400 hover:text-white transition-colors">How It Works</a></li>
-              <li><a href="/help" className="text-sm text-slate-400 hover:text-white transition-colors">Help Center</a></li>
               <li><a href="/faq" className="text-sm text-slate-400 hover:text-white transition-colors">FAQs</a></li>
               <li><a href="/sitemap" className="text-sm text-slate-400 hover:text-white transition-colors">Sitemap</a></li>
-            </ul>
-          </div>
-          <div className="space-y-4 col-span-2 sm:col-span-1">
-            <h4 className="text-white font-bold text-sm tracking-wide">Legal</h4>
-            <ul className="space-y-3">
-              <li><a href="/terms" className="text-sm text-slate-400 hover:text-white transition-colors">Terms & Conditions</a></li>
-              <li><a href="/privacy" className="text-sm text-slate-400 hover:text-white transition-colors">Privacy Policy</a></li>
-              <li><a href="/cookies" className="text-sm text-slate-400 hover:text-white transition-colors">Cookie Policy</a></li>
             </ul>
           </div>
         </div>
@@ -60,7 +50,7 @@ export default function Footer({ country }) {
       {country && (
         <div className="max-w-7xl mx-auto mt-12 bg-[#14121b] p-6 rounded-xl border border-slate-800 flex flex-col sm:flex-row gap-6 justify-between items-start sm:items-center">
           <div className="space-y-2">
-            <div className="text-xs font-bold uppercase tracking-wider text-orange-700 flex items-center gap-2">
+            <div className="text-xs font-bold uppercase tracking-wider text-white-700 flex items-center gap-2">
               <MapPin className="w-4 h-4" /> United States
             </div>
             <div className="text-sm text-slate-300 font-medium">131 Continental Drive, Newark, Delaware, 19713</div>
@@ -71,7 +61,7 @@ export default function Footer({ country }) {
       {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-slate-800 text-center text-xs text-slate-500 space-y-2">
         <p>© {new Date().getFullYear()}</p>
-        <p className="flex justify-center items-center gap-1">Made with <Heart size={12} className="text-red-500 fill-red-500" /> by Hibarri.</p>
+        <p className="flex justify-center items-center gap-1">Made with <Heart size={12} className="text-orange-700 fill-orange-700" /> by Hibarri.</p>
       </div>
     </footer>
   );
