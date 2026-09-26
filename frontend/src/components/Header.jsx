@@ -23,7 +23,7 @@ const defaultNavLinks = [
     href: '/#channels',
     dropdown: []
   },
-  { label: 'ABOUT', href: '/#about' },
+  { label: 'ABOUT', href: '/content/comet100is' },
 ];
 
 export default function Header() {
