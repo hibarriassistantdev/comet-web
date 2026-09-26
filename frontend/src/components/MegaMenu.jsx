@@ -6,18 +6,18 @@ const megaMenuData = [
   {
     category: 'Sales & Business Development',
     items: [
-      { label: 'Leads List Generation', slug: 'lead-generation', icon: <Target size={18} /> },
-      { label: 'Email Verification', slug: 'lead-generation', icon: <MessageCircle size={18} /> },
-      { label: 'Mass Email Sequencing', slug: 'conversion-rate-optimisation', icon: <Megaphone size={18} /> }
+      { label: 'Leads List Generation', slug: 'leads-list-generation', icon: <Target size={18} /> },
+      { label: 'Email Verification', slug: 'email-verification', icon: <MessageCircle size={18} /> },
+      { label: 'Mass Email Sequencing', slug: 'mass-email-sequencing', icon: <Megaphone size={18} /> }
     ]
   },
     {
     category: 'Social Media',
     items: [
-      { label: 'Social Media Posting & Scheduling', slug: 'lead-generation', icon: <Rocket size={18} /> },
-      { label: 'Social Media Prospecting', slug: 'lead-generation', icon: <UserSearch size={18} /> },
-      { label: 'Social Media DMs', slug: 'sales-enablement', icon: <UserPlus size={18} /> },
-      { label: 'Social Media Comment Marketing', slug: 'conversion-rate-optimisation', icon: <CheckCircle size={18} /> }
+      { label: 'Social Media Posting & Scheduling', slug: 'social-media-posting', icon: <Rocket size={18} /> },
+      { label: 'Social Media Prospecting', slug: 'social-media-prospecting', icon: <UserSearch size={18} /> },
+      { label: 'Social Media DMs', slug: 'social-media-dms', icon: <UserPlus size={18} /> },
+      { label: 'Social Media Comment Marketing', slug: 'social-media-comment-marketing', icon: <CheckCircle size={18} /> }
     ]
   },
   {
@@ -25,7 +25,7 @@ const megaMenuData = [
     items: [
       { label: 'SEO & Keyword Development', slug: 'seo', icon: <Search size={18} /> },
       { label: 'AEO / AI Search', slug: 'aeo-ai-search', icon: <Sparkles size={18} />, badge: 'PRO' },
-      { label: 'AEO Rank Tracking', slug: 'aeo-rank-tracker', icon: <TrendingUp size={18} /> }
+      { label: 'AEO Rank Tracking', slug: 'aeo-rank-tracking', icon: <TrendingUp size={18} /> }
     ]
   },
   {
@@ -33,7 +33,7 @@ const megaMenuData = [
     items: [
       { label: 'Google Ads', slug: 'google-ads', icon: <Activity size={18} /> },
       { label: 'LinkedIn Ads', slug: 'linkedin-ads', icon: <Users size={18} /> },
-      { label: 'Meta Ads', slug: 'facebook-ads', icon: <Goal size={18} /> },
+      { label: 'Meta Ads', slug: 'meta-ads', icon: <Goal size={18} /> },
       { label: 'YouTube Ads', slug: 'youtube-ads', icon: <Presentation size={18} /> }
     ]
   },
@@ -44,6 +44,7 @@ const megaMenuData = [
       { label: '3D Rendering', slug: 'linkedin-ads', icon: <PackagePlus size={18} /> },
     ]
   },
+  ];
 
 export default function MegaMenu({ pages = [] }) {
   return (
