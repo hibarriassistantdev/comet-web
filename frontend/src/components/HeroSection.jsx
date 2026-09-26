@@ -188,7 +188,7 @@ export default function HeroSection({ country }) {
               <div className="hero-tag inline-flex items-center gap-2.5 bg-orange-50 border border-orange-200 rounded-full px-4 py-1.5">
                 <span className="h-2 w-2 rounded-full bg-[#ff4500] animate-pulse inline-block" />
                 <span className="text-[#ff4500] text-xs font-extrabold uppercase tracking-[0.18em]">
-                  Comet100
+                  Comet 100
                 </span>
               </div>
 
@@ -203,15 +203,14 @@ export default function HeroSection({ country }) {
                 </h2>
                 <h1 className="text-slate-800 font-black uppercase leading-none tracking-tight mt-1"
                   style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.1rem)' }}>
-                  OF YOUR MARKETING
-                  <br />AGENCY
+                  OF YOUR MARKETING AGENCY
                 </h1>
               </div>
 
               {/* Sub-paragraph */}
               <p className="hero-sub mx-auto max-w-xl text-[#ff4500] font-medium leading-relaxed"
                 style={{ fontSize: 'clamp(0.95rem, 1.4vw, 1.15rem)' }}>
-                <strong>Comet is your secret back-office team.</strong> We absorb high-volume workload from agencies that need to deliver more work, more quickly, without expanding their internal teams.
+                We absorb high-volume workload from agencies that need to deliver more work, faster, without expanding their internal teams.
               </p>
 
               {/* CTA buttons */}
