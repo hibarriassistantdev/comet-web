@@ -188,7 +188,7 @@ export default function HeroSection({ country }) {
               <div className="hero-tag inline-flex items-center gap-2.5 bg-orange-50 border border-orange-200 rounded-full px-4 py-1.5">
                 <span className="h-2 w-2 rounded-full bg-[#ff4500] animate-pulse inline-block" />
                 <span className="text-[#ff4500] text-xs font-extrabold uppercase tracking-[0.18em]">
-                  Built for Agencies
+                  Comet100
                 </span>
               </div>
 
@@ -211,7 +211,7 @@ export default function HeroSection({ country }) {
               {/* Sub-paragraph */}
               <p className="hero-sub mx-auto max-w-xl text-[#ff4500] font-medium leading-relaxed"
                 style={{ fontSize: 'clamp(0.95rem, 1.4vw, 1.15rem)' }}>
-                <strong>Comet is your secret back-office team.</strong> We exist to make your digital marketing offer competitive by delivering high volume output at scale, on demand.
+                <strong>Comet is your secret back-office team.</strong> We absorb high-volume workload from agencies that need to deliver more work, more quickly, without expanding their internal teams.
               </p>
 
               {/* CTA buttons */}
