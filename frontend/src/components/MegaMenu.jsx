@@ -1,44 +1,49 @@
 import React from 'react';
-import { Search, Megaphone, TrendingUp, Presentation, Users, Target, CheckCircle, ArrowRight } from 'lucide-react';
+import { Search, Megaphone, TrendingUp, Presentation, Users, Target, CheckCircle, ArrowRight, MessageCircle, Sparkles, Rocket, UserPlus, UserSearch, Activity, Goal, Palette, PackagePlus } from 'lucide-react';
 
 // Each item's href MUST match the slug seeded into the DB
 const megaMenuData = [
   {
-    category: 'Sales & Growth',
+    category: 'Sales & Business Development',
     items: [
-      { label: 'Lead Generation', slug: 'lead-generation', icon: <Target size={18} /> },
-      { label: 'Sales Enablement', slug: 'sales-enablement', icon: <TrendingUp size={18} /> },
-      { label: 'Conversion Rate Optimisation', slug: 'conversion-rate-optimisation', icon: <CheckCircle size={18} /> }
+      { label: 'Leads List Generation', slug: 'lead-generation', icon: <Target size={18} /> },
+      { label: 'Email Verification', slug: 'lead-generation', icon: <MessageCircle size={18} /> },
+      { label: 'Mass Email Sequencing', slug: 'conversion-rate-optimisation', icon: <Megaphone size={18} /> }
+    ]
+  },
+    {
+    category: 'Social Media',
+    items: [
+      { label: 'Social Media Posting & Scheduling', slug: 'lead-generation', icon: <Rocket size={18} /> },
+      { label: 'Social Media Prospecting', slug: 'lead-generation', icon: <UserSearch size={18} /> },
+      { label: 'Social Media DMs', slug: 'sales-enablement', icon: <UserPlus size={18} /> },
+      { label: 'Social Media Comment Marketing', slug: 'conversion-rate-optimisation', icon: <CheckCircle size={18} /> }
     ]
   },
   {
     category: 'Search & AI',
     items: [
-      { label: 'SEO', slug: 'seo', icon: <Search size={18} /> },
-      { label: 'AI Voice Agent', slug: 'ai-voice-agent', icon: <Megaphone size={18} />, badge: 'NEW' },
-      { label: 'AEO / AI Search', slug: 'aeo-ai-search', icon: <Search size={18} />, badge: 'PRO' },
-      { label: 'AEO Rank Tracker', slug: 'aeo-rank-tracker', icon: <TrendingUp size={18} /> }
+      { label: 'SEO & Keyword Development', slug: 'seo', icon: <Search size={18} /> },
+      { label: 'AEO / AI Search', slug: 'aeo-ai-search', icon: <Sparkles size={18} />, badge: 'PRO' },
+      { label: 'AEO Rank Tracking', slug: 'aeo-rank-tracker', icon: <TrendingUp size={18} /> }
     ]
   },
   {
     category: 'Paid Media',
     items: [
-      { label: 'Google Ads', slug: 'google-ads', icon: <TrendingUp size={18} /> },
+      { label: 'Google Ads', slug: 'google-ads', icon: <Activity size={18} /> },
       { label: 'LinkedIn Ads', slug: 'linkedin-ads', icon: <Users size={18} /> },
-      { label: 'Facebook Ads', slug: 'facebook-ads', icon: <Users size={18} /> },
+      { label: 'Meta Ads', slug: 'facebook-ads', icon: <Goal size={18} /> },
       { label: 'YouTube Ads', slug: 'youtube-ads', icon: <Presentation size={18} /> }
     ]
   },
-  {
-    category: 'Social & Marketplace',
+    {
+    category: 'Content Creation',
     items: [
-      { label: 'Social Media Marketing', slug: 'social-media-marketing', icon: <Users size={18} /> },
-      { label: 'Takealot Ads', slug: 'takealot-ads', icon: <Target size={18} /> },
-      { label: 'Makro Ads', slug: 'makro-ads', icon: <Target size={18} /> },
-      { label: 'AI Marketing', slug: 'ai-marketing', icon: <Megaphone size={18} /> }
+      { label: 'Graphic Design', slug: 'google-ads', icon: <Palette size={18} /> },
+      { label: '3D Rendering', slug: 'linkedin-ads', icon: <PackagePlus size={18} /> },
     ]
-  }
-];
+  },
 
 export default function MegaMenu({ pages = [] }) {
   return (
@@ -51,7 +56,7 @@ export default function MegaMenu({ pages = [] }) {
 
       {/* Main Rectangle Box */}
       <div
-        className="bg-[#0a0a0f] text-slate-300 rounded-2xl overflow-hidden"
+        className="bg-slate-200 text-slate-900 rounded-2xl overflow-hidden"
         style={{
           border: '1px solid rgba(255,255,255,0.07)',
           borderTop: '3px solid #ff4500',
