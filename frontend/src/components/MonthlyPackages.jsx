@@ -43,7 +43,7 @@ const packages = [
     features: [
       "12 brands max",
       "1,800 social media posts",
-      "12 social channels limit",
+      "40 social channels limit",
       "60 email sequences",
       "600 SEO pages",
       "390 graphic designs",
