@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_BASE_URL || '';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'https://comet-web-1.onrender.com';
 
 export async function apiRequest(path, options = {}) {
   const response = await fetch(`${API_BASE}/api${path}`, {
