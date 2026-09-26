@@ -64,7 +64,7 @@ export default function MegaMenu({ pages = [] }) {
 
       {/* Main Rectangle Box */}
       <div
-        className="bg-slate-200 text-slate-900 rounded-2xl overflow-hidden"
+        className="bg-slate-200 text-slate-200 rounded-2xl overflow-hidden"
         style={{
           border: '1px solid rgba(255,255,255,0.07)',
           borderTop: '3px solid #ff4500',
@@ -88,7 +88,7 @@ export default function MegaMenu({ pages = [] }) {
                       <div className="flex items-center justify-center w-7 h-7 rounded-md bg-slate-800/60 text-[#ff4500] group-hover/item:bg-[#ff4500] group-hover/item:text-white transition-all duration-200 flex-shrink-0">
                         {item.icon}
                       </div>
-                      <span className="flex-1 text-[13px] font-semibold tracking-wide leading-tight text-slate-300 group-hover/item:text-white">
+                      <span className="flex-1 text-[13px] font-semibold tracking-wide leading-tight text-slate-900 group-hover/item:text-orange">
                         {item.label}
                       </span>
                       {item.badge && (
