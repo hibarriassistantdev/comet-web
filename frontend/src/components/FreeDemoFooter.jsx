@@ -63,10 +63,10 @@ export default function FreeDemoFooter() {
         </div>
       )}
 
-      <div className="mt-8 text-white text-xs font-bold uppercase tracking-widest space-y-2 opacity-90">
+      {/* <div className="mt-8 text-white text-xs font-bold uppercase tracking-widest space-y-2 opacity-90">
         <p>{settings.footerCopyright}</p>
         <p>{settings.footerAddress}</p>
-      </div>
+      </div> */}
     </section>
   );
 }

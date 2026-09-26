@@ -1,0 +1,95 @@
+.rich-text-editor-container {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  color: #333;
+}
+
+.content-field {
+  display: grid;
+  gap: 6px;
+  color: #516059;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.rich-text-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 8px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+}
+
+.rich-text-menu button {
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.rich-text-menu button:hover {
+  background-color: #e0e0e0;
+}
+
+.rich-text-menu button.is-active {
+  background-color: #d0d0d0;
+  border-color: #bbb;
+  font-weight: bold;
+}
+
+.rich-text-menu button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ProseMirror {
+  padding: 1rem;
+  min-height: 200px;
+  outline: none;
+}
+
+.ProseMirror > * + * {
+  margin-top: 0.75em;
+}
+
+.ProseMirror h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.ProseMirror h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+}
+
+.ProseMirror h3 {
+  font-size: 1.17rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.ProseMirror ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+.ProseMirror ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+}
+
+.ProseMirror a {
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+}

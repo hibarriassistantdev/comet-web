@@ -3,6 +3,7 @@ import rateLimit from 'express-rate-limit';
 import Content from '../models/Content.js';
 import Visit from '../models/Visit.js';
 import requireAdmin from '../middleware/requireAdmin.js';
+import { google } from 'googleapis';
 
 const router = Router();
 const pageviewLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 600, standardHeaders: 'draft-7', legacyHeaders: false });
@@ -24,7 +25,7 @@ router.get('/', requireAdmin, async (req, res) => {
   since.setUTCHours(0, 0, 0, 0);
   since.setUTCDate(since.getUTCDate() - (days - 1));
 
-  const [totals, daily, popularPages, publishedCount] = await Promise.all([
+  const [totals, daily, popularPages, publishedCount, googleSearchConsole] = await Promise.all([
     Visit.aggregate([
       { $match: { createdAt: { $gte: since } } },
       { $group: { _id: null, pageViews: { $sum: 1 }, visitors: { $addToSet: '$visitorId' } } },
@@ -44,6 +45,7 @@ router.get('/', requireAdmin, async (req, res) => {
       { $limit: 8 },
     ]),
     Content.countDocuments({ status: 'published' }),
+    getGoogleSearchConsoleStats(days),
   ]);
 
   return res.json({
@@ -53,8 +55,73 @@ router.get('/', requireAdmin, async (req, res) => {
     publishedCount,
     daily,
     popularPages,
-    googleSearchConsole: { configured: false, message: 'Connect a verified Google Search Console property to show clicks, impressions, and average position.' },
+    googleSearchConsole,
   });
 });
+
+async function getGoogleSearchConsoleStats(days) {
+  const siteUrl = process.env.GOOGLE_SEARCH_CONSOLE_SITE_URL?.trim();
+  const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL?.trim();
+  const privateKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY?.replace(/\\n/g, '\n');
+
+  if (!siteUrl || !email || !privateKey) {
+    return {
+      configured: false,
+      message: 'Set the Search Console property URL and service-account credentials in the backend environment.',
+    };
+  }
+
+  const endDate = new Date();
+  endDate.setUTCHours(0, 0, 0, 0);
+  endDate.setUTCDate(endDate.getUTCDate() - 3);
+  const startDate = new Date(endDate);
+  startDate.setUTCDate(startDate.getUTCDate() - days + 1);
+
+  try {
+    const auth = new google.auth.JWT({
+      email,
+      key: privateKey,
+      scopes: ['https://www.googleapis.com/auth/webmasters.readonly'],
+    });
+    const searchConsole = google.searchconsole({ version: 'v1', auth });
+    const { data } = await searchConsole.searchanalytics.query({
+      siteUrl,
+      requestBody: {
+        startDate: startDate.toISOString().slice(0, 10),
+        endDate: endDate.toISOString().slice(0, 10),
+      },
+    });
+    const row = data.rows?.[0];
+
+    return {
+      configured: true,
+      clicks: Math.round(row?.clicks || 0),
+      impressions: Math.round(row?.impressions || 0),
+      avgPosition: row ? Number(row.position.toFixed(1)) : null,
+      message: row ? '' : 'No Search Console data is available for this period yet.',
+    };
+  } catch (error) {
+    const status = error.response?.status;
+    const detail = String(error.response?.data?.error?.message || error.message || 'Unknown error')
+      .replace(/[\r\n]+/g, ' ')
+      .slice(0, 240);
+    console.error('Google Search Console request failed:', {
+      status: status || null,
+      code: error.code || null,
+      detail,
+    });
+    const message = status === 401
+      ? 'Google rejected the service-account credentials. Check the service-account email and replace the exposed key.'
+      : status === 403
+        ? 'Google denied access. Enable the Search Console API and grant the service account access to this property.'
+        : status === 404
+          ? 'Google could not find this Search Console property. Check the exact property URL.'
+          : `Search Console request failed${status ? ` (HTTP ${status})` : ''}. Check the backend log for details.`;
+    return {
+      configured: false,
+      message,
+    };
+  }
+}
 
 export default router;

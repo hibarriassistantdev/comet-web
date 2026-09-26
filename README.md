@@ -21,5 +21,5 @@ In production, configure `VITE_API_BASE_URL` to the API origin at frontend build
 - Superadmin login with an HTTP-only JWT cookie and login rate limiting.
 - Visitor and page-view totals, daily unique visitor chart, and popular pages.
 - Draft/published pages and posts served at `/content/:slug`, with basic SEO metadata.
-- Google Search Console is not connected yet. Configure verified Search Console access and its API credentials before displaying clicks, impressions, or average search position.
+- The admin organic-search panel queries Google Search Console for clicks, impressions, and average position. Enable the Search Console API, grant the backend service-account email access to the verified property, and configure `GOOGLE_SEARCH_CONSOLE_SITE_URL`, `GOOGLE_SERVICE_ACCOUNT_EMAIL`, and `GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY` in the backend environment. Queries end three days before today to account for Search Console reporting delays.
 - Visitor analytics uses a random browser identifier stored in local storage. Add the appropriate privacy notice/consent flow for the site's jurisdictions before production deployment.

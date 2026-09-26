@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { apiRequest } from '../lib/api';
+import MegaMenu from './MegaMenu';
 
 // The exact Comet logo from the original designs
 function CometBrandLogo() {
@@ -40,6 +41,7 @@ export default function Header() {
                 dropdown: payload.content.map((page) => ({
                   label: page.title,
                   href: `/content/${page.slug}`,
+                  type: page.type,
                 })),
               };
             }
@@ -67,22 +69,31 @@ export default function Header() {
             <div key={l.label} className="relative group">
               <a
                 href={l.href}
-                className="text-white text-xs font-extrabold uppercase tracking-[0.25em] hover:text-amber-200 transition-colors py-4 inline-block"
+                className="text-white text-[11px] font-extrabold uppercase tracking-[0.2em] hover:text-amber-200 transition-colors py-8 inline-block flex items-center gap-1"
               >
                 {l.label}
+                {l.label === 'SERVICES' && (
+                  <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" className="mt-0.5 opacity-70 group-hover:-rotate-180 transition-transform duration-300">
+                    <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                )}
               </a>
-              {l.dropdown && (
-                <div className="absolute top-full left-0 mt-0 w-56 bg-white rounded-lg shadow-xl border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 flex flex-col py-2 z-50">
-                  {l.dropdown.map((dropItem) => (
-                    <a
-                      key={dropItem.label}
-                      href={dropItem.href}
-                      className="px-5 py-2.5 text-slate-700 text-sm font-bold hover:bg-orange-50 hover:text-[#ff4500] transition-colors"
-                    >
-                      {dropItem.label}
-                    </a>
-                  ))}
-                </div>
+              {l.label === 'SERVICES' ? (
+                <MegaMenu pages={l.dropdown || []} />
+              ) : (
+                l.dropdown && (
+                  <div className="absolute top-full left-0 mt-0 w-56 bg-white rounded-lg shadow-xl border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 flex flex-col py-2 z-50">
+                    {l.dropdown.map((dropItem) => (
+                      <a
+                        key={dropItem.label}
+                        href={dropItem.href}
+                        className="px-5 py-2.5 text-slate-700 text-sm font-bold hover:bg-orange-50 hover:text-[#ff4500] transition-colors"
+                      >
+                        {dropItem.label}
+                      </a>
+                    ))}
+                  </div>
+                )
               )}
             </div>
           ))}

@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node --watch src/server.js",
     "start": "node src/server.js",
-    "seed:admin": "node src/scripts/seed-admin.js"
+    "seed:admin": "node src/scripts/seed-admin.js",
+    "seed:services": "node src/scripts/seed-services.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
@@ -16,6 +17,7 @@
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
     "express-rate-limit": "^7.5.0",
+    "googleapis": "^182.0.0",
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.12.1",

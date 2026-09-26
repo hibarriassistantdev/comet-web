@@ -3,6 +3,8 @@ import { Activity, ArrowUpRight, FileText, LogOut, Plus, Search, Settings, Trash
 import ReactMarkdown from 'react-markdown';
 import { apiRequest } from '../../lib/api';
 import './admin.css';
+import RichTextEditor from './RichTextEditor';
+import { SERVICES } from '../../data/services';
 
 const emptyForm = { title: '', slug: '', type: 'page', status: 'draft', excerpt: '', body: '', seoTitle: '', seoDescription: '' };
 
@@ -285,9 +287,9 @@ function ContentManager({ content, search, onSearch, editing, form, setForm, onN
           <label>URL slug<div className="slug-field"><span>/content/</span><input required pattern="[a-z0-9]+(-[a-z0-9]+)*" value={form.slug} onChange={(event) => setForm({ ...form, slug: event.target.value.toLowerCase().replace(/\s+/g, '-') })} /></div></label>
           <div className="form-pair"><label>Type<select value={form.type} onChange={(event) => setForm({ ...form, type: event.target.value })}><option value="page">Page</option><option value="post">Post</option></select></label><label>Status<select value={form.status} onChange={(event) => setForm({ ...form, status: event.target.value })}><option value="draft">Draft</option><option value="published">Published</option></select></label></div>
           <label>Summary<textarea rows="2" maxLength="500" value={form.excerpt} onChange={(event) => setForm({ ...form, excerpt: event.target.value })} /></label>
-          <label>
+          <div className="content-field" role="group" aria-labelledby="content-field-label">
             <div className="flex items-center justify-between mb-2">
-              <span>Content</span>
+              <span id="content-field-label">Content</span>
               <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                 <button
                   type="button"
@@ -306,33 +308,13 @@ function ContentManager({ content, search, onSearch, editing, form, setForm, onN
                 </button>
               </div>
             </div>
-            <input 
-              type="file" 
-              accept="image/*" 
-              ref={fileInputRef} 
-              style={{ display: 'none' }} 
-              onChange={handleImageUpload} 
-            />
             <input type="file" accept="image/*" ref={fileInputRef} style={{ display: 'none' }} onChange={handleImageUpload} />
             {showPreview ? (
-              <div className="content-body" style={{ border: '1px solid #dce3de', borderRadius: '3px', padding: '12px', minHeight: '180px', background: '#fff', fontSize: '14px' }}>
-                <ReactMarkdown
-                  components={{
-                    p: ({ node, children }) => {
-                      const hasOnlyImage = node.children.length === 1 && node.children[0].type === 'element' && node.children[0].tagName === 'img';
-                      if (hasOnlyImage) return <>{children}</>;
-                      return <p>{children}</p>;
-                    },
-                    img: ({ src, alt }) => (
-                      <figure className="content-figure"><img src={src} alt={alt || 'Image'} loading="lazy" />{alt && alt !== 'Image' && <figcaption>{alt}</figcaption>}</figure>
-                    ),
-                  }}
-                >{form.body || '*Nothing to preview yet…*'}</ReactMarkdown>
-              </div>
+              <div className="content-body" style={{ border: '1px solid #dce3de', borderRadius: '3px', padding: '12px', minHeight: '180px', background: '#fff', fontSize: '14px' }} dangerouslySetInnerHTML={{ __html: form.body || '<i>Nothing to preview yet...</i>' }} />
             ) : (
-              <textarea rows="8" maxLength="100000" value={form.body} onChange={(event) => setForm({ ...form, body: event.target.value })} />
+              <RichTextEditor value={form.body} onChange={(content) => setForm((current) => ({ ...current, body: content }))} />
             )}
-          </label>
+          </div>
           <details className="seo-fields"><summary>Search appearance</summary><label>SEO title<input maxLength="180" value={form.seoTitle} onChange={(event) => setForm({ ...form, seoTitle: event.target.value })} /></label><label>Meta description<textarea rows="2" maxLength="320" value={form.seoDescription} onChange={(event) => setForm({ ...form, seoDescription: event.target.value })} /></label></details>
           <div className="editor-actions">{form.status === 'published' && form.slug && <a className="preview-link" href={`/content/${encodeURIComponent(form.slug)}`} target="_blank" rel="noreferrer">Preview <ArrowUpRight size={14} /></a>}<button className="primary-button" type="submit" disabled={busy}>{busy ? 'Saving...' : form.status === 'published' ? 'Publish' : 'Save draft'} <ArrowUpRight size={16} /></button></div>
         </form>

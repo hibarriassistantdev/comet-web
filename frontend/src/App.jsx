@@ -7,7 +7,9 @@ import FreeDemoFooter from './components/FreeDemoFooter';
 import { countryData } from './data/countries';
 import AdminApp from './components/admin/AdminApp';
 import ContentPage from './components/ContentPage';
+import ServicePage from './components/ServicePage';
 import { usePageviewTracking } from './hooks/usePageviewTracking';
+import Footer from './components/Footer';
 
 const DEFAULT_COUNTRY_CODE = 'NZ';
 
@@ -61,7 +63,7 @@ function detectCountryCode() {
 
 export default function App() {
   usePageviewTracking();
-  
+
   const [selectedCountryCode] = useState(() => detectCountryCode());
   const country = countryData[selectedCountryCode] || countryData[DEFAULT_COUNTRY_CODE];
 
@@ -77,6 +79,20 @@ export default function App() {
           <ContentPage slug={decodeURIComponent(window.location.pathname.slice('/content/'.length))} />
         </div>
         <FreeDemoFooter country={country} />
+        <Footer country={country} />
+      </div>
+    );
+  }
+
+  if (window.location.pathname.startsWith('/services/')) {
+    return (
+      <div className="min-h-screen bg-white text-slate-900 font-sans flex flex-col">
+        <Header />
+        <div className="flex-1">
+          <ServicePage slug={decodeURIComponent(window.location.pathname.slice('/services/'.length))} />
+        </div>
+        <FreeDemoFooter country={country} />
+        <Footer country={country} />
       </div>
     );
   }
@@ -108,7 +124,7 @@ function LandingPage({ country }) {
       <FreeDemoFooter country={country} />
 
       {/* 10. Dynamic Footer */}
-      {/* <Footer country={country} /> */}
+      <Footer country={country} />
     </div>
   );
 }

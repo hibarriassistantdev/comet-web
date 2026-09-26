@@ -258,22 +258,6 @@ export default function HeroSection({ country }) {
                   transform: 'translate(-50%,-50%)',
                 }}
               />
-              {/* Floating stat cards */}
-              <div className="relative z-20 flex flex-col gap-4 w-full max-w-xs">
-                {[
-                  { num: '10M+', label: 'Leads extracted per month' },
-                  { num: '6', label: 'Countries targeted' },
-                  { num: '100x', label: 'Speed vs manual teams' },
-                ].map((s) => (
-                  <div key={s.label}
-                    className="bg-white border border-slate-100 rounded-2xl px-6 py-4 flex items-center gap-5 shadow-lg"
-                    style={{ boxShadow: '0 4px 30px -8px rgba(0,0,0,0.08)' }}
-                  >
-                    <span className="text-3xl font-black text-[#ff4500]">{s.num}</span>
-                    <span className="text-slate-500 text-sm font-semibold leading-snug">{s.label}</span>
-                  </div>
-                ))}
-              </div>
             </div>
 
           </div>
