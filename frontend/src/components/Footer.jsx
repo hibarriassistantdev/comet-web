@@ -61,17 +61,9 @@ export default function Footer({ country }) {
         <div className="max-w-7xl mx-auto mt-12 bg-[#14121b] p-6 rounded-xl border border-slate-800 flex flex-col sm:flex-row gap-6 justify-between items-start sm:items-center">
           <div className="space-y-2">
             <div className="text-xs font-bold uppercase tracking-wider text-orange-400 flex items-center gap-2">
-              <MapPin className="w-4 h-4" /> {country.name} Regional Headquarters
+              <MapPin className="w-4 h-4" /> USA
             </div>
-            <div className="text-sm text-slate-300 font-medium">{country.address}</div>
-          </div>
-          <div className="space-y-2">
-            <div className="text-xs bg-slate-800 px-2.5 py-1 rounded-md text-slate-300 font-mono inline-block">
-              {country.flag} {country.code}
-            </div>
-            <div className="text-sm text-white font-mono flex items-center gap-2">
-              <Phone className="w-4 h-4 text-orange-500" /> {country.phone}
-            </div>
+            <div className="text-sm text-slate-300 font-medium">131 Continental Drive, Newark, Delaware, 19713</div>
           </div>
         </div>
       )}
