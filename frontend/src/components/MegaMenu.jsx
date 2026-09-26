@@ -1,14 +1,21 @@
 import React from 'react';
-import { Search, Megaphone, TrendingUp, Presentation, Users, Target, CheckCircle, ArrowRight, MessageCircle, Sparkles, Rocket, UserPlus, UserSearch, Activity, Goal, Palette, PackagePlus } from 'lucide-react';
+import { Search, Megaphone, TrendingUp, Presentation, Users, Send, Target, CheckCircle, ArrowRight, Phone, MessageCircle, Sparkles, Rocket, UserPlus, UserSearch, Activity, Goal, Palette, PackagePlus } from 'lucide-react';
 
 // Each item's href MUST match the slug seeded into the DB
 const megaMenuData = [
   {
-    category: 'Sales & Business Development',
+    category: 'Leads & Sales',
     items: [
       { label: 'Leads List Generation', slug: 'leads-list-generation', icon: <Target size={18} /> },
-      { label: 'Email Verification', slug: 'email-verification', icon: <MessageCircle size={18} /> },
-      { label: 'Mass Email Sequencing', slug: 'mass-email-sequencing', icon: <Megaphone size={18} /> }
+      { label: 'Text Marketing', slug: 'text-marketing', icon: <Phone size={18} /> }
+    ]
+  },
+    {
+    category: 'Email',
+    items: [
+      { label: 'Bulk Email Verification', slug: 'email-verification', icon: <MessageCircle size={18} /> },
+      { label: 'Mailbox Warmup', slug: 'mailbox-warmup', icon: <Send size={18} /> },
+      { label: 'Email Marketing', slug: 'mass-email-sequencing', icon: <Megaphone size={18} /> },
     ]
   },
     {
@@ -57,7 +64,7 @@ export default function MegaMenu({ pages = [] }) {
 
       {/* Main Rectangle Box */}
       <div
-        className="bg-slate-200 text-black rounded-2xl overflow-hidden"
+        className="bg-slate-200 text-slate-900 rounded-2xl overflow-hidden"
         style={{
           border: '1px solid rgba(255,255,255,0.07)',
           borderTop: '3px solid #ff4500',
