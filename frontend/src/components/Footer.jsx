@@ -17,11 +17,8 @@ export default function Footer({ country }) {
     </a>
           </div>
           <p className="text-sm text-slate-300 leading-relaxed max-w-sm">
-            Your trusted mass marketing agency running off Diviniom, Galileo, Maillady, and Databank.
+            Your trusted mass marketing subcontractor.
           </p>
-          <a href="mailto:info@hibarri.com" className="text-sm text-slate-300 hover:text-white block">
-            info@hibarri.com
-          </a>
           <div className="flex items-center gap-4 text-slate-400 pt-2">
             <a href="#" aria-label="Facebook" className="hover:text-white transition-colors"><span className="font-bold text-xl leading-none" aria-hidden="true">f</span></a>
             <a href="#" aria-label="Instagram" className="hover:text-white transition-colors"><Camera size={20} /></a>
@@ -81,8 +78,8 @@ export default function Footer({ country }) {
 
       {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-slate-800 text-center text-xs text-slate-500 space-y-2">
-        <p>© {new Date().getFullYear()} Comet Marketing Ltd. All rights reserved.</p>
-        <p className="flex justify-center items-center gap-1">Made with <Heart size={12} className="text-red-500 fill-red-500" /> in South Africa</p>
+        <p>© {new Date().getFullYear()}Comet100</p>
+        <p className="flex justify-center items-center gap-1">Made with <Heart size={12} className="text-red-500 fill-red-500" /> by Hibarri.</p>
       </div>
     </footer>
   );
