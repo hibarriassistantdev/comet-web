@@ -11,6 +11,8 @@ import FreeDemoFooter from './components/FreeDemoFooter';
 import Footer from './components/Footer';
 import { countryData } from './data/countries';
 
+const DEFAULT_COUNTRY_CODE = 'NZ';
+
 const timezoneCountryMap = {
   'Pacific/Auckland': 'NZ',
   'Australia/Sydney': 'AU',
@@ -26,42 +28,45 @@ const timezoneCountryMap = {
   'America/Denver': 'US',
 };
 
+const languageRegionMap = {
+  NZ: 'NZ',
+  AU: 'AU',
+  GB: 'UK',
+  IE: 'IE',
+  US: 'US',
+  CA: 'CA',
+};
+
 function detectCountryCode() {
-  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  if (timezoneCountryMap[timeZone]) {
-    return timezoneCountryMap[timeZone];
-  }
-
-  const languages = navigator.languages || [navigator.language || 'en-US'];
-  for (const language of languages) {
-    const region = language.split('-')[1]?.toUpperCase();
-    if (!region) continue;
-
-    const match = {
-      NZ: 'NZ',
-      AU: 'AU',
-      GB: 'UK',
-      IE: 'IE',
-      US: 'US',
-      CA: 'CA',
-    }[region];
-
-    if (match) {
-      return match;
+  if (typeof Intl !== 'undefined' && Intl.DateTimeFormat) {
+    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if (timezoneCountryMap[timeZone]) {
+      return timezoneCountryMap[timeZone];
     }
   }
 
-  return 'NZ';
+  if (typeof navigator !== 'undefined') {
+    const languages = navigator.languages || [navigator.language || 'en-US'];
+
+    for (const language of languages) {
+      const region = language.split('-').at(-1)?.toUpperCase();
+      const match = languageRegionMap[region];
+
+      if (match) {
+        return match;
+      }
+    }
+  }
+
+  return DEFAULT_COUNTRY_CODE;
 }
 
 export default function App() {
   const [selectedCountryCode, setSelectedCountryCode] = useState(() => detectCountryCode());
-  const country = countryData[selectedCountryCode] || countryData.NZ;
+  const country = countryData[selectedCountryCode] || countryData[DEFAULT_COUNTRY_CODE];
 
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans">
-      {/* <CountrySelector selectedCountryCode={selectedCountryCode} onSelectCountry={setSelectedCountryCode} /> */}
-
       <Header />
 
       <HeroSection country={country} />
