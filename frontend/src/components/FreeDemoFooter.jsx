@@ -25,6 +25,7 @@ export default function FreeDemoFooter() {
         </div>
       </div>
       
+      
       <div className="mt-16 text-white text-xs font-bold uppercase tracking-widest space-y-2 opacity-90">
         <p>BUILT WITH ♡ BY HIBARRI</p>
         <p>131 CONTINENTAL DRIVE, NEWARK, DELAWARE, USA, DE19702</p>

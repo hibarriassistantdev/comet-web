@@ -60,7 +60,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans">
-      <CountrySelector selectedCountryCode={selectedCountryCode} onSelectCountry={setSelectedCountryCode} />
+      {/* <CountrySelector selectedCountryCode={selectedCountryCode} onSelectCountry={setSelectedCountryCode} /> */}
 
       <Header />
 
