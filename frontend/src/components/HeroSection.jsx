@@ -189,7 +189,7 @@ export default function HeroSection({ country }) {
               <div className="hero-tag inline-flex items-center gap-2.5 bg-orange-50 border border-orange-200 rounded-full px-4 py-1.5">
                 <span className="h-2 w-2 rounded-full bg-[#ff4500] animate-pulse inline-block" />
                 <span className="text-[#ff4500] text-xs font-extrabold uppercase tracking-[0.18em]">
-                  Serving {country.name}
+                  Built for Agencies
                 </span>
               </div>
 
@@ -217,7 +217,9 @@ export default function HeroSection({ country }) {
 
               {/* CTA buttons */}
               <div className="hero-btns flex flex-wrap gap-3 pt-1">
-                <a href="#book-call"
+                <a href="https://calendly.com/comet100"
+                  target="_blank"
+                  rel="noreferrer"
                   className="inline-block bg-[#ff4500] hover:bg-[#d93c00] text-white font-extrabold uppercase tracking-[0.15em] text-sm px-7 py-3.5 rounded-full shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl"
                   style={{ boxShadow: '0 8px 30px -6px rgba(255,69,0,0.5)' }}
                 >

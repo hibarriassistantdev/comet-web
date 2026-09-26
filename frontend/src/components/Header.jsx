@@ -8,14 +8,14 @@ function CometBrandLogo() {
       <img
         src="/logo/orangebg-commet-logo.png"
         alt="Comet Logo"
-        className="h-14 sm:h-16 md:h-20 object-contain origin-left scale-[1.8] sm:scale-[1.75] md:scale-[2] transition-all duration-300"
+        className="h-12 sm:h-14 md:h-16 object-contain origin-left scale-[1.15] sm:scale-[1.2] md:scale-[1.3] transition-all duration-300"
       />
     </div>
   );
 }
 
 const navLinks = [
-  { label: 'PRICING', href: '#build-your-own' },
+  { label: 'PRICING', href: '#pricing' },
   { label: 'CHANNELS', href: '#channels' },
   { label: 'ABOUT', href: '#about' },
   // { label: 'MARKETING', href: '#marketing' },

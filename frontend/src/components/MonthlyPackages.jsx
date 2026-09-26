@@ -61,12 +61,11 @@ const packages = [
 
 export default function MonthlyPackages({ country }) {
   const formatLocalPrice = (usdValue) => {
-    const converted = usdValue * (country?.baseRateMultiplier || 1);
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: country?.currencyCode || 'USD',
+      currency: 'USD',
       maximumFractionDigits: 0,
-    }).format(converted);
+    }).format(usdValue);
   };
 
   return (

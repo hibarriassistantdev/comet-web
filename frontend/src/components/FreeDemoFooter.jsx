@@ -19,13 +19,18 @@ export default function FreeDemoFooter() {
               {item}
             </div>
           ))}
-          <button className="mt-8 bg-white text-slate-900 px-12 py-3 rounded-md font-black uppercase tracking-widest shadow-md hover:bg-slate-50 transition-colors">
+          <a
+            href="https://calendly.com/comet100"
+            target="_blank"
+            rel="noreferrer"
+            className="mt-8 inline-flex items-center justify-center bg-white text-slate-900 px-12 py-3 rounded-md font-black uppercase tracking-widest shadow-md hover:bg-slate-50 transition-colors"
+          >
             Start Here
-          </button>
+          </a>
         </div>
       </div>
       
-      
+
       <div className="mt-16 text-white text-xs font-bold uppercase tracking-widest space-y-2 opacity-90">
         <p>BUILT WITH ♡ BY HIBARRI</p>
         <p>131 CONTINENTAL DRIVE, NEWARK, DELAWARE, USA, DE19702</p>
