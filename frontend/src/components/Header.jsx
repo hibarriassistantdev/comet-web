@@ -6,9 +6,9 @@ function CometBrandLogo() {
   return (
     <div className="flex items-center gap-2">
       <img
-        src="/logo/orangebg-commet-logo.png"
+        src="/logo/orangebg-commet-logo-cropped.png"
         alt="Comet Logo"
-        className="h-12 sm:h-14 md:h-16 object-contain origin-left scale-[1.15] sm:scale-[1.2] md:scale-[1.3] transition-all duration-300"
+        className="h-[62px] object-contain max-w-[calc(100vw-6rem)]"
       />
     </div>
   );
@@ -29,7 +29,7 @@ export default function Header() {
       className="sticky top-0 z-50 shadow-md flex items-center"
       style={{
         background: 'linear-gradient(90deg, #ff4500 0%, #ff6b00 55%, #ff2a00 100%)',
-        height: '64px',
+        height: '80px',
       }}
     >
       <div className="max-w-7xl w-full mx-auto px-6 flex items-center justify-between">
@@ -63,7 +63,7 @@ export default function Header() {
 
       {/* Mobile dropdown */}
       {open && (
-        <div className="md:hidden absolute top-16 left-0 right-0 z-40 py-4 px-6 flex flex-col gap-4 shadow-xl"
+        <div className="md:hidden absolute top-[80px] left-0 right-0 z-40 py-4 px-6 flex flex-col gap-4 shadow-xl"
           style={{ background: '#ff4500' }}>
           {navLinks.map((l) => (
             <a key={l.label} href={l.href} onClick={() => setOpen(false)}

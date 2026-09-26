@@ -195,9 +195,9 @@ export default function HeroSection({ country }) {
 
               {/* H1 */}
               <div className="hero-h1">
-                <p className="text-[#ff4500] font-black uppercase tracking-[0.12em] text-sm sm:text-base mb-2">
+                {/* <p className="text-[#ff4500] font-black uppercase tracking-[0.12em] text-sm sm:text-base mb-2">
                   {country.h1}
-                </p>
+                </p> */}
                 <h2 className="text-[#ff4500] font-black uppercase leading-none tracking-tight"
                   style={{ fontSize: 'clamp(2.4rem, 5vw, 3.6rem)' }}>
                   THE BACKBONE
