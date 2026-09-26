@@ -180,10 +180,9 @@ export default function HeroSection({ country }) {
 
         {/* ── Page Content ── */}
         <div className="relative z-10 flex-1 flex items-center max-w-7xl mx-auto w-full px-6 lg:px-14 py-10 lg:py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full">
+          <div className="grid grid-cols-1 gap-8 items-center w-full">
 
-            {/* LEFT: Text */}
-            <div className="lg:col-span-7 space-y-5">
+            <div className="mx-auto max-w-4xl space-y-5 text-center">
 
               {/* Country pill */}
               <div className="hero-tag inline-flex items-center gap-2.5 bg-orange-50 border border-orange-200 rounded-full px-4 py-1.5">
@@ -210,13 +209,13 @@ export default function HeroSection({ country }) {
               </div>
 
               {/* Sub-paragraph */}
-              <p className="hero-sub text-[#ff4500] font-medium leading-relaxed max-w-xl"
+              <p className="hero-sub mx-auto max-w-xl text-[#ff4500] font-medium leading-relaxed"
                 style={{ fontSize: 'clamp(0.95rem, 1.4vw, 1.15rem)' }}>
                 <strong>Comet is your secret back-office team.</strong> We exist to make your digital marketing offer competitive by delivering high volume output at scale, on demand.
               </p>
 
               {/* CTA buttons */}
-              <div className="hero-btns flex flex-wrap gap-3 pt-1">
+              <div className="hero-btns flex flex-wrap justify-center gap-3 pt-1">
                 <a href="https://calendly.com/comet100"
                   target="_blank"
                   rel="noreferrer"
@@ -235,7 +234,7 @@ export default function HeroSection({ country }) {
               {/* Trust tags — tighter tracking + smaller gap so this row
                   always fits on one line and is never the first thing
                   pushed out of view */}
-              <div className="hero-cks flex flex-wrap gap-x-5 gap-y-2 pt-1">
+              <div className="hero-cks flex flex-wrap justify-center gap-x-5 gap-y-2 pt-1">
                 {["GET THEIR ATTENTION", "LAND THE DEAL"].map((tag) => (
                   <div key={tag} className="flex items-center gap-2 text-slate-700 text-xs font-extrabold uppercase tracking-[0.1em] whitespace-nowrap">
                     <span className="w-5 h-5 rounded-full border-2 border-slate-800 flex items-center justify-center flex-shrink-0">
@@ -245,19 +244,6 @@ export default function HeroSection({ country }) {
                   </div>
                 ))}
               </div>
-            </div>
-
-            {/* RIGHT: Empty space where comets fall through — subtle stat cards */}
-            <div className="hidden lg:flex lg:col-span-5 flex-col items-center justify-center gap-5 relative">
-              {/* Glowing orange orb behind comets */}
-              <div className="absolute rounded-full"
-                style={{
-                  width: 380, height: 380,
-                  background: 'radial-gradient(circle, rgba(255,69,0,0.06) 0%, transparent 70%)',
-                  top: '50%', left: '50%',
-                  transform: 'translate(-50%,-50%)',
-                }}
-              />
             </div>
 
           </div>
