@@ -57,7 +57,7 @@ export default function MegaMenu({ pages = [] }) {
 
       {/* Main Rectangle Box */}
       <div
-        className="bg-slate-200 text-slate-900 rounded-2xl overflow-hidden"
+        className="bg-slate-200 text-black rounded-2xl overflow-hidden"
         style={{
           border: '1px solid rgba(255,255,255,0.07)',
           borderTop: '3px solid #ff4500',
