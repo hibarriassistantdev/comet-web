@@ -69,9 +69,9 @@ export default function MonthlyPackages({ country }) {
   };
 
   return (
-    <section className="py-20 px-6 bg-white" id="pricing">
+    <section className="py-20 px-6 bg-[#ff4500]" id="pricing">
       <div className="max-w-7xl mx-auto text-center space-y-12">
-        <h2 className="font-black text-4xl sm:text-5xl text-slate-800 uppercase tracking-tight">
+        <h2 className="font-white text-4xl sm:text-5xl text-white uppercase tracking-tight">
           MONTHLY PACKAGES
         </h2>
 
@@ -94,7 +94,7 @@ export default function MonthlyPackages({ country }) {
             href="https://calendly.com/comet100"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center justify-center bg-[#ff4500] hover:bg-[#d93c00] text-white font-extrabold uppercase tracking-widest px-10 py-4 rounded-full transition-colors shadow-lg"
+            className="inline-flex items-center justify-center bg-white hover:bg-[#fffdfb] text-[#ff4500] font-extrabold uppercase tracking-widest px-10 py-4 rounded-full transition-colors shadow-lg"
           >
             Book a Call
           </a>

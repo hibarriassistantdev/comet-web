@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
-import CountrySelector from './components/CountrySelector';
+import { useState } from 'react';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
-import DailyOperationsGrid from './components/DailyOperationsGrid';
 import BigBrandsGrid from './components/BigBrandsGrid';
-import MassMarketingTech from './components/MassMarketingTech';
-import BuildYourOwnCalculator from './components/BuildYourOwnCalculator';
 import MonthlyPackages from './components/MonthlyPackages';
 import FreeDemoFooter from './components/FreeDemoFooter';
-import Footer from './components/Footer';
 import { countryData } from './data/countries';
+import AdminApp from './components/admin/AdminApp';
+import ContentPage from './components/ContentPage';
+import { usePageviewTracking } from './hooks/usePageviewTracking';
 
 const DEFAULT_COUNTRY_CODE = 'NZ';
 
@@ -62,8 +60,31 @@ function detectCountryCode() {
 }
 
 export default function App() {
-  const [selectedCountryCode, setSelectedCountryCode] = useState(() => detectCountryCode());
+  usePageviewTracking();
+  
+  const [selectedCountryCode] = useState(() => detectCountryCode());
   const country = countryData[selectedCountryCode] || countryData[DEFAULT_COUNTRY_CODE];
+
+  if (window.location.pathname === '/admin' || window.location.pathname.startsWith('/admin/')) {
+    return <AdminApp />;
+  }
+
+  if (window.location.pathname.startsWith('/content/')) {
+    return (
+      <div className="min-h-screen bg-white text-slate-900 font-sans flex flex-col">
+        <Header />
+        <div className="flex-1">
+          <ContentPage slug={decodeURIComponent(window.location.pathname.slice('/content/'.length))} />
+        </div>
+        <FreeDemoFooter country={country} />
+      </div>
+    );
+  }
+
+  return <LandingPage country={country} />;
+}
+
+function LandingPage({ country }) {
 
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans">
