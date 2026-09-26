@@ -60,8 +60,8 @@ export default function Footer({ country }) {
       {country && (
         <div className="max-w-7xl mx-auto mt-12 bg-[#14121b] p-6 rounded-xl border border-slate-800 flex flex-col sm:flex-row gap-6 justify-between items-start sm:items-center">
           <div className="space-y-2">
-            <div className="text-xs font-bold uppercase tracking-wider text-orange-400 flex items-center gap-2">
-              <MapPin className="w-4 h-4" /> USA
+            <div className="text-xs font-bold uppercase tracking-wider text-orange-700 flex items-center gap-2">
+              <MapPin className="w-4 h-4" /> United States
             </div>
             <div className="text-sm text-slate-300 font-medium">131 Continental Drive, Newark, Delaware, 19713</div>
           </div>
@@ -70,7 +70,7 @@ export default function Footer({ country }) {
 
       {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-slate-800 text-center text-xs text-slate-500 space-y-2">
-        <p>© {new Date().getFullYear()}Comet100</p>
+        <p>© {new Date().getFullYear()}</p>
         <p className="flex justify-center items-center gap-1">Made with <Heart size={12} className="text-red-500 fill-red-500" /> by Hibarri.</p>
       </div>
     </footer>
