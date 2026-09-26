@@ -9,10 +9,10 @@ const router = Router();
 const loginLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 10, standardHeaders: 'draft-7', legacyHeaders: false });
 const cookieOptions = {
   httpOnly: true,
-  secure: process.env.NODE_ENV === 'production',
-  sameSite: 'strict',
+  secure: true,
+  sameSite: 'none',
   maxAge: 8 * 60 * 60 * 1000,
-  path: '/api',
+  path: '/',
 };
 
 router.post('/login', loginLimiter, async (req, res) => {

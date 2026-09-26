@@ -48,6 +48,12 @@ export default function AdminApp() {
   }, []);
 
   useEffect(() => {
+    if (!checkingSession && !admin && window.location.pathname !== '/admin') {
+      window.history.replaceState({}, '', '/admin');
+    }
+  }, [admin, checkingSession]);
+
+  useEffect(() => {
     if (!admin) return;
     apiRequest(`/analytics?days=${range}`).then(setAnalytics).catch((error) => setNotice(error.message));
   }, [admin, range]);
@@ -85,6 +91,7 @@ export default function AdminApp() {
         body: JSON.stringify({ email: values.get('email'), password: values.get('password') }),
       });
       setAdmin(result.admin);
+      window.history.pushState({}, '', `/admin/${activeTab}`);
     } catch (error) {
       setLoginError(error.message);
     }
@@ -95,6 +102,8 @@ export default function AdminApp() {
     setAdmin(null);
     setAnalytics(null);
     setContent([]);
+    setActiveTabState('overview');
+    window.history.pushState({}, '', '/admin');
   }
 
   function startNew() {
