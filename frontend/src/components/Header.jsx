@@ -17,8 +17,8 @@ function CometBrandLogo() {
 const navLinks = [
   { label: 'PRICING', href: '#build-your-own' },
   { label: 'CHANNELS', href: '#channels' },
-  { label: 'TOOLS', href: '#tools' },
-  { label: 'MARKETING', href: '#marketing' },
+  { label: 'ABOUT', href: '#about' },
+  // { label: 'MARKETING', href: '#marketing' },
 ];
 
 export default function Header() {
