@@ -85,12 +85,15 @@ export default function MonthlyPackages({ country }) {
                   <p key={i} className="text-sm font-semibold text-slate-600">{feature}</p>
                 ))}
               </div>
-              <div className="text-4xl font-black text-[#ff4500] mb-6">{formatLocalPrice(pkg.usdPrice)}</div>
-              <button className="w-full bg-[#ff4500] hover:bg-[#d93c00] text-white font-extrabold uppercase tracking-widest py-4 rounded-full transition-colors shadow-lg">
-                Book a Call
-              </button>
+              <div className="text-4xl font-black text-[#ff4500] mb-0">{formatLocalPrice(pkg.usdPrice)}</div>
             </div>
           ))}
+        </div>
+
+        <div className="pt-4">
+          <button className="inline-flex items-center justify-center bg-[#ff4500] hover:bg-[#d93c00] text-white font-extrabold uppercase tracking-widest px-10 py-4 rounded-full transition-colors shadow-lg">
+            Book a Call
+          </button>
         </div>
       </div>
     </section>
