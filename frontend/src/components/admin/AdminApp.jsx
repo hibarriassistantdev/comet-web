@@ -98,12 +98,8 @@ export default function AdminApp() {
   }
 
   async function logout() {
-    await apiRequest('/auth/logout', { method: 'POST' });
-    setAdmin(null);
-    setAnalytics(null);
-    setContent([]);
-    setActiveTabState('overview');
-    window.history.pushState({}, '', '/admin');
+    await apiRequest('/auth/logout', { method: 'POST' }).catch(() => {});
+    window.location.href = '/admin';
   }
 
   function startNew() {

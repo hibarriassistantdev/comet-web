@@ -12,6 +12,13 @@ export async function apiRequest(path, options = {}) {
 
   if (response.status === 204) return null;
   const payload = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(payload.error || 'The request could not be completed.');
+  if (!response.ok) {
+    if (response.status === 401 && window.location.pathname.startsWith('/admin')) {
+      if (window.location.pathname !== '/admin') {
+        window.location.href = '/admin';
+      }
+    }
+    throw new Error(payload.error || 'The request could not be completed.');
+  }
   return payload;
 }
