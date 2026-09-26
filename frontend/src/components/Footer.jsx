@@ -15,15 +15,11 @@ export default function Footer({ country }) {
           className="h-20 w-auto max-w-full object-contain sm:h-24"
       />
     </a>
+
           </div>
           <p className="text-sm text-slate-300 leading-relaxed max-w-sm">
             Built for agencies.
           </p>
-          <div className="flex items-center gap-4 text-slate-400 pt-2">
-            <a href="#" aria-label="Facebook" className="hover:text-white transition-colors"><span className="font-bold text-xl leading-none" aria-hidden="true">f</span></a>
-            <a href="#" aria-label="Instagram" className="hover:text-white transition-colors"><Camera size={20} /></a>
-            <a href="#" aria-label="LinkedIn" className="font-bold text-sm hover:text-white transition-colors">in</a>
-          </div>
         </div>
 
         {/* Right Columns: Links Grid */}
