@@ -91,9 +91,14 @@ export default function MonthlyPackages({ country }) {
         </div>
 
         <div className="pt-4">
-          <button className="inline-flex items-center justify-center bg-[#ff4500] hover:bg-[#d93c00] text-white font-extrabold uppercase tracking-widest px-10 py-4 rounded-full transition-colors shadow-lg">
+          <a
+            href="https://calendly.com/comet100"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center justify-center bg-[#ff4500] hover:bg-[#d93c00] text-white font-extrabold uppercase tracking-widest px-10 py-4 rounded-full transition-colors shadow-lg"
+          >
             Book a Call
-          </button>
+          </a>
         </div>
       </div>
     </section>
