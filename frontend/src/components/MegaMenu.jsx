@@ -85,10 +85,10 @@ export default function MegaMenu({ pages = [] }) {
                       href={`/services/${item.slug}`}
                       className="group/item flex items-center gap-2.5 hover:text-white transition-colors duration-200"
                     >
-                      <div className="flex items-center justify-center w-7 h-7 rounded-md bg-slate-800/60 text-[#ff4500] group-hover/item:bg-[#ff4500] group-hover/item:text-white transition-all duration-200 flex-shrink-0">
+                      <div className="flex items-center justify-center w-7 h-7 rounded-md bg-slate-400/60 text-[#ff4500] group-hover/item:bg-[#ff4500] group-hover/item:text-white transition-all duration-200 flex-shrink-0">
                         {item.icon}
                       </div>
-                      <span className="flex-1 text-[13px] font-semibold tracking-wide leading-tight text-slate-900 group-hover/item:text-orange">
+                      <span className="flex-1 text-[13px] font-semibold tracking-wide leading-tight text-slate-900 group-hover/item:text-white">
                         {item.label}
                       </span>
                       {item.badge && (
