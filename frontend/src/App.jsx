@@ -11,16 +11,59 @@ import FreeDemoFooter from './components/FreeDemoFooter';
 import Footer from './components/Footer';
 import { countryData } from './data/countries';
 
+const timezoneCountryMap = {
+  'Pacific/Auckland': 'NZ',
+  'Australia/Sydney': 'AU',
+  'Australia/Melbourne': 'AU',
+  'Australia/Brisbane': 'AU',
+  'Europe/London': 'UK',
+  'Europe/Dublin': 'IE',
+  'America/New_York': 'US',
+  'America/Toronto': 'CA',
+  'America/Vancouver': 'CA',
+  'America/Los_Angeles': 'US',
+  'America/Chicago': 'US',
+  'America/Denver': 'US',
+};
+
+function detectCountryCode() {
+  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  if (timezoneCountryMap[timeZone]) {
+    return timezoneCountryMap[timeZone];
+  }
+
+  const languages = navigator.languages || [navigator.language || 'en-US'];
+  for (const language of languages) {
+    const region = language.split('-')[1]?.toUpperCase();
+    if (!region) continue;
+
+    const match = {
+      NZ: 'NZ',
+      AU: 'AU',
+      GB: 'UK',
+      IE: 'IE',
+      US: 'US',
+      CA: 'CA',
+    }[region];
+
+    if (match) {
+      return match;
+    }
+  }
+
+  return 'NZ';
+}
+
 export default function App() {
-  const [selectedCountryCode, setSelectedCountryCode] = useState('NZ');
+  const [selectedCountryCode, setSelectedCountryCode] = useState(() => detectCountryCode());
   const country = countryData[selectedCountryCode] || countryData.NZ;
 
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans">
-      {/* 2. Navigation Header */}
+      <CountrySelector selectedCountryCode={selectedCountryCode} onSelectCountry={setSelectedCountryCode} />
+
       <Header />
 
-      {/* 3. Hero Section (Design 1) */}
       <HeroSection country={country} />
 
       {/* 4. Can Your Team Do This Every Day? (Design 2) */}
@@ -32,14 +75,11 @@ export default function App() {
       {/* 6. BUILD YOUR OWN (Design 5) */}
       {/* <BuildYourOwnCalculator country={country} /> */}
 
-      {/* 7. Pricing */}
-      <MonthlyPackages />
+      <MonthlyPackages country={country} />
 
-      {/* 8. Big Brands We've Done Work For */}
       <BigBrandsGrid />
 
-      {/* 9. Get a Free Demo Footer */}
-      <FreeDemoFooter />
+      <FreeDemoFooter country={country} />
 
       {/* 10. Dynamic Footer */}
       {/* <Footer country={country} /> */}

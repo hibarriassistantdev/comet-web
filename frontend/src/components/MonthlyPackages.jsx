@@ -3,7 +3,7 @@ import React from 'react';
 const packages = [
   {
     name: "Starter",
-    price: "$4,999",
+    usdPrice: 4999,
     features: [
       "3 brands max",
       "300 social media posts",
@@ -20,7 +20,7 @@ const packages = [
   },
   {
     name: "Growth",
-    price: "$9,999",
+    usdPrice: 9999,
     features: [
       "8 brands max",
       "900 social media posts",
@@ -39,7 +39,7 @@ const packages = [
   },
   {
     name: "Critical Mass",
-    price: "$14,999",
+    usdPrice: 14999,
     features: [
       "12 brands max",
       "1,800 social media posts",
@@ -59,7 +59,16 @@ const packages = [
   }
 ];
 
-export default function MonthlyPackages() {
+export default function MonthlyPackages({ country }) {
+  const formatLocalPrice = (usdValue) => {
+    const converted = usdValue * (country?.baseRateMultiplier || 1);
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: country?.currencyCode || 'USD',
+      maximumFractionDigits: 0,
+    }).format(converted);
+  };
+
   return (
     <section className="py-20 px-6 bg-white" id="pricing">
       <div className="max-w-7xl mx-auto text-center space-y-12">
@@ -76,7 +85,7 @@ export default function MonthlyPackages() {
                   <p key={i} className="text-sm font-semibold text-slate-600">{feature}</p>
                 ))}
               </div>
-              <div className="text-4xl font-black text-[#ff4500] mb-6">{pkg.price}</div>
+              <div className="text-4xl font-black text-[#ff4500] mb-6">{formatLocalPrice(pkg.usdPrice)}</div>
               <button className="w-full bg-[#ff4500] hover:bg-[#d93c00] text-white font-extrabold uppercase tracking-widest py-4 rounded-full transition-colors shadow-lg">
                 Book a Call
               </button>
