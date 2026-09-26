@@ -24,13 +24,13 @@ export default function App() {
       <HeroSection country={country} />
 
       {/* 4. Can Your Team Do This Every Day? (Design 2) */}
-      <DailyOperationsGrid />
+      {/* <DailyOperationsGrid /> */}
 
       {/* 5. Our Secret to Mass Marketing (Design 4) */}
-      <MassMarketingTech />
+      {/* <MassMarketingTech /> */}
 
       {/* 6. BUILD YOUR OWN (Design 5) */}
-      <BuildYourOwnCalculator country={country} />
+      {/* <BuildYourOwnCalculator country={country} /> */}
 
       {/* 7. Pricing */}
       <MonthlyPackages />

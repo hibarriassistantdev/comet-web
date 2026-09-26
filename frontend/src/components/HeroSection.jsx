@@ -189,7 +189,7 @@ export default function HeroSection({ country }) {
               <div className="hero-tag inline-flex items-center gap-2.5 bg-orange-50 border border-orange-200 rounded-full px-4 py-1.5">
                 <span className="h-2 w-2 rounded-full bg-[#ff4500] animate-pulse inline-block" />
                 <span className="text-[#ff4500] text-xs font-extrabold uppercase tracking-[0.18em]">
-                  {country.flag}&nbsp; Serving {country.name}
+                  Serving {country.name}
                 </span>
               </div>
 
