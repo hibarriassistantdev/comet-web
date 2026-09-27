@@ -116,6 +116,7 @@ export default function MegaMenu({ pages = [] }) {
           ))}
         </div>
 
+        {/*
         {pages.length > 0 && (
           <section className="px-8 py-6 border-t border-white/10" aria-label="Other published pages and posts">
             <h3 className="text-[10px] font-black text-[#ff4500] uppercase tracking-[0.18em] mb-4 font-sans">
@@ -140,6 +141,7 @@ export default function MegaMenu({ pages = [] }) {
             </div>
           </section>
         )}
+        */}
 
         {/* Bottom CTA Bar i have put this commeted when i need w iwll add that */}
         {/* <div
