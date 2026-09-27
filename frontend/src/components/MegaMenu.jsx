@@ -1,12 +1,14 @@
 import React from 'react';
-import { Search, Megaphone, TrendingUp, Presentation, Users, Workflow, Send, Image, Target, BotMessageSquare, CheckCircle, ArrowRight, Phone, MessageCircle, Sparkles, Rocket, UserPlus, UserSearch, Activity, Goal, Palette, PackagePlus } from 'lucide-react';
+import { Search, Megaphone, TrendingUp, Presentation, Users, Workflow, Send, Image, Clapperboard, Target, BotMessageSquare, Crown, CheckCircle, ArrowRight, Phone, MessageCircle, Sparkles, Rocket, UserPlus, UserSearch, Activity, Goal, Palette, PackagePlus } from 'lucide-react';
 
 // Each item's href MUST match the slug seeded into the DB
 const megaMenuData = [
   {
     category: 'Leads & Sales',
     items: [
-      { label: 'Leads Generation', slug: 'leads-list-generation', icon: <Target size={18} /> }
+      { label: 'Leads Generation', slug: 'leads-list-generation', icon: <Target size={18} /> },
+      { label: 'Influencers', slug: 'influencers', icon: <Crown size={18} /> },
+      { label: 'Media', slug: 'media', icon: <Clapperboard size={18} /> }
     ]
   },
     {
@@ -47,8 +49,8 @@ const megaMenuData = [
     {
     category: 'Content Creation',
     items: [
-      { label: 'Graphic Design', slug: 'google-ads', icon: <Palette size={18} /> },
-      { label: '3D Rendering', slug: 'linkedin-ads', icon: <PackagePlus size={18} /> },
+      { label: 'Graphic Design', slug: 'graphic-design', icon: <Palette size={18} /> },
+      { label: '3D Rendering', slug: '3d-rendering', icon: <PackagePlus size={18} /> },
       { label: 'Animation', slug: 'animation', icon: <Image size={18} /> },
     ]
   },
