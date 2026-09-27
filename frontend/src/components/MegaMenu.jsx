@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Megaphone, TrendingUp, Presentation, Users, Send, Target, CheckCircle, ArrowRight, Phone, MessageCircle, Sparkles, Rocket, UserPlus, UserSearch, Activity, Goal, Palette, PackagePlus } from 'lucide-react';
+import { Search, Megaphone, TrendingUp, Presentation, Users, Workflow, Send, Image, Target, BotMessageSquare, CheckCircle, ArrowRight, Phone, MessageCircle, Sparkles, Rocket, UserPlus, UserSearch, Activity, Goal, Palette, PackagePlus } from 'lucide-react';
 
 // Each item's href MUST match the slug seeded into the DB
 const megaMenuData = [
@@ -16,6 +16,7 @@ const megaMenuData = [
       { label: 'Bulk Email Verification', slug: 'email-verification', icon: <MessageCircle size={18} /> },
       { label: 'Mailbox Warmup', slug: 'mailbox-warmup', icon: <Send size={18} /> },
       { label: 'Email Marketing', slug: 'mass-email-sequencing', icon: <Megaphone size={18} /> },
+      { label: 'DKIM & DNS Record Management', slug: 'dkim', icon: <PackagePlus size={18} /> },
     ]
   },
     {
@@ -49,6 +50,14 @@ const megaMenuData = [
     items: [
       { label: 'Graphic Design', slug: 'google-ads', icon: <Palette size={18} /> },
       { label: '3D Rendering', slug: 'linkedin-ads', icon: <PackagePlus size={18} /> },
+      { label: 'Animation', slug: 'animation', icon: <Image size={18} /> },
+    ]
+  },
+  {
+    category: 'Software',
+    items: [
+      { label: 'Coding', slug: 'coding', icon: <Workflow size={18} /> },
+      { label: 'App Development', slug: 'app-development', icon: <BotMessageSquare size={18} /> },
     ]
   },
   ];
