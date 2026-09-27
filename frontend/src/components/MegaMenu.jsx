@@ -6,8 +6,7 @@ const megaMenuData = [
   {
     category: 'Leads & Sales',
     items: [
-      { label: 'Leads List Generation', slug: 'leads-list-generation', icon: <Target size={18} /> },
-      { label: 'Text Marketing', slug: 'text-marketing', icon: <Phone size={18} /> }
+      { label: 'Leads Generation', slug: 'leads-list-generation', icon: <Target size={18} /> }
     ]
   },
     {
@@ -91,7 +90,7 @@ export default function MegaMenu({ pages = [] }) {
                 {col.items.map((item, i) => (
                   <li key={i}>
                     <a
-                      href={`/services/${item.slug}`}
+                      href={`/content/${item.slug}`}
                       className="group/item flex items-center gap-2.5 hover:text-white transition-colors duration-200"
                     >
                       <div className="flex items-center justify-center w-7 h-7 rounded-md bg-slate-400/60 text-[#ff4500] group-hover/item:bg-[#ff4500] group-hover/item:text-white transition-all duration-200 flex-shrink-0">
