@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { apiRequest } from '../lib/api';
-import MegaMenu from './MegaMenu';
+import MegaMenu, { megaMenuData } from './MegaMenu';
 
 // The exact Comet logo from the original designs
 function CometBrandLogo() {
@@ -28,6 +28,7 @@ const defaultNavLinks = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const [navLinks, setNavLinks] = useState(defaultNavLinks);
 
   useEffect(() => {
@@ -69,7 +70,7 @@ export default function Header() {
             <div key={l.label} className="relative group">
               <a
                 href={l.href}
-                className="text-white text-[11px] font-extrabold uppercase tracking-[0.2em] hover:text-amber-200 transition-colors py-8 inline-block flex items-center gap-1"
+                className="text-white text-[11px] font-extrabold uppercase tracking-[0.2em] hover:text-amber-200 transition-colors py-8 flex items-center gap-1"
               >
                 {l.label}
                 {l.label === 'SERVICES' && (
@@ -118,11 +119,31 @@ export default function Header() {
           style={{ background: '#ff4500' }}>
           {navLinks.map((l) => (
             <div key={l.label} className="border-b border-white/20 pb-3 flex flex-col gap-3">
-              <a href={l.href} onClick={() => setOpen(false)}
-                className="text-white text-sm font-extrabold uppercase tracking-[0.2em]">
-                {l.label}
-              </a>
-              {l.dropdown && (
+              {l.label === 'SERVICES' ? (
+                <button type="button" aria-expanded={servicesOpen} onClick={() => setServicesOpen((value) => !value)}
+                  className="flex items-center justify-between text-left text-white text-sm font-extrabold uppercase tracking-[0.2em]">
+                  {l.label}<ChevronDown size={16} className={servicesOpen ? 'rotate-180 transition-transform' : 'transition-transform'} />
+                </button>
+              ) : (
+                <a href={l.href} onClick={() => setOpen(false)} className="text-white text-sm font-extrabold uppercase tracking-[0.2em]">
+                  {l.label}
+                </a>
+              )}
+              {l.label === 'SERVICES' && servicesOpen && (
+                <div className="flex flex-col gap-3 pl-4 border-l-2 border-white/30 ml-2">
+                  {megaMenuData.flatMap((column) => column.items).map((item) => (
+                    <a key={item.slug} href={`/services/${item.slug}`} onClick={() => setOpen(false)} className="text-white/90 text-xs font-bold hover:text-white">
+                      {item.label}
+                    </a>
+                  ))}
+                  {(l.dropdown || []).map((page) => (
+                    <a key={page.href} href={page.href} onClick={() => setOpen(false)} className="text-white/70 text-xs font-bold hover:text-white">
+                      {page.label}
+                    </a>
+                  ))}
+                </div>
+              )}
+              {l.label !== 'SERVICES' && l.dropdown && (
                 <div className="flex flex-col gap-2 pl-4 border-l-2 border-white/30 ml-2">
                   {l.dropdown.map((dropItem) => (
                     <a

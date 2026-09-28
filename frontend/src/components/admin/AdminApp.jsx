@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { Activity, ArrowUpRight, FileText, LogOut, Plus, Search, Settings, Trash2, X, Image as ImageIcon, Eye, EyeOff } from 'lucide-react';
+import { Activity, ArrowUpRight, FileText, LogOut, Plus, Search, Settings, Trash2, X, Image as ImageIcon, Eye, EyeOff, Copy } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { apiRequest } from '../../lib/api';
 import './admin.css';
@@ -37,6 +37,10 @@ export default function AdminApp() {
   const [search, setSearch] = useState('');
   const [editing, setEditing] = useState(null);
   const [form, setForm] = useState(emptyForm);
+  const formRef = useRef(form);
+  const editingRef = useRef(editing);
+  formRef.current = form;
+  editingRef.current = editing;
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState('');
   const [footerSettings, setFooterSettings] = useState(null);
@@ -63,6 +67,37 @@ export default function AdminApp() {
   useEffect(() => {
     if (!admin) return;
     apiRequest('/content').then(({ content: records }) => setContent(records)).catch((error) => setNotice(error.message));
+  }, [admin]);
+
+  useEffect(() => {
+    if (!admin) return;
+    const interval = window.setInterval(async () => {
+      const current = formRef.current;
+      const title = String(current.title || '').trim();
+      const slug = String(current.slug || title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''));
+      if (!title || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) return;
+
+      const draft = { ...current, title, slug, status: current.status || 'draft' };
+      try {
+        const currentId = editingRef.current;
+        if (currentId) {
+          await apiRequest(`/content/${currentId}/autosave`, { method: 'PUT', body: JSON.stringify(draft) });
+        } else {
+          const result = await apiRequest('/content/autosave', {
+            method: 'POST',
+            body: JSON.stringify({ ...draft, status: 'draft' }),
+          });
+          editingRef.current = result.content._id;
+          setEditing(result.content._id);
+          setContent((records) => [result.content, ...records]);
+          if (!formRef.current.slug) setForm((value) => ({ ...value, slug }));
+        }
+        setNotice('Draft progress autosaved.');
+      } catch (error) {
+        setNotice(`Autosave failed: ${error.message}`);
+      }
+    }, 180000);
+    return () => window.clearInterval(interval);
   }, [admin]);
 
   useEffect(() => {
@@ -105,13 +140,15 @@ export default function AdminApp() {
   }
 
   function startNew() {
+    editingRef.current = null;
     setEditing(null);
     setForm(emptyForm);
   }
 
   function startEdit(record) {
+    editingRef.current = record._id;
     setEditing(record._id);
-    setForm({ ...emptyForm, ...record });
+    setForm({ ...emptyForm, ...record, ...(record.draftProgress || {}) });
   }
 
   async function saveContent(event) {
@@ -127,6 +164,7 @@ export default function AdminApp() {
         ? records.map((record) => record._id === editing ? result.content : record)
         : [result.content, ...records]);
       setNotice(form.status === 'published' ? 'Content published.' : 'Draft saved.');
+      editingRef.current = null;
       startNew();
     } catch (error) {
       setNotice(error.message);
@@ -227,6 +265,7 @@ function Overview({ analytics, range, onRange, onOpenContent }) {
             {analytics?.googleSearchConsole?.configured ? <span className="live-status"><i />LIVE DATA</span> : <span className="coming-soon">SETUP REQUIRED</span>}
           </div>
           <p>{analytics?.googleSearchConsole?.message || 'Search Console connection is required to show page clicks, impressions, and average position.'}</p>
+          <div className="gsc-links"><a href="https://search.google.com/search-console" target="_blank" rel="noreferrer">Open Search Console <ArrowUpRight size={13} /></a><a href="https://console.cloud.google.com/apis/library/searchconsole.googleapis.com" target="_blank" rel="noreferrer">Enable Search Console API <ArrowUpRight size={13} /></a></div>
           <div className="search-metrics">
             <div><strong>{analytics?.googleSearchConsole?.clicks?.toLocaleString() || '—'}</strong><span>CLICKS</span></div>
             <div><strong>{analytics?.googleSearchConsole?.impressions?.toLocaleString() || '—'}</strong><span>IMPRESSIONS</span></div>
@@ -248,29 +287,46 @@ function Metric({ label, value, caption }) {
 function ContentManager({ content, search, onSearch, editing, form, setForm, onNew, onEdit, onSave, onDelete, busy }) {
   const [uploadingImage, setUploadingImage] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
+  const [copied, setCopied] = useState(false);
   const fileInputRef = useRef(null);
 
-  async function handleImageUpload(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    
+  async function uploadImages(files) {
+    const imageFiles = Array.from(files).filter((file) => file.type.startsWith('image/'));
+    if (!imageFiles.length) return [];
     setUploadingImage(true);
-    const formData = new FormData();
-    formData.append('image', file);
-
     try {
-      const response = await apiRequest('/upload', {
-        method: 'POST',
-        body: formData,
-      });
-      
-      const imageMarkdown = `\n![Image](${response.url})\n`;
-      setForm((prev) => ({ ...prev, body: prev.body + imageMarkdown }));
+      const uploads = await Promise.all(imageFiles.map(async (file) => {
+        const formData = new FormData();
+        formData.append('image', file);
+        const response = await apiRequest('/upload', { method: 'POST', body: formData });
+        return response.url;
+      }));
+      return uploads;
     } catch (error) {
       alert(error.message || 'Failed to upload image.');
+      return [];
     } finally {
       setUploadingImage(false);
-      event.target.value = null; // Reset input
+    }
+  }
+
+  async function handleImageUpload(event) {
+    const urls = await uploadImages(event.target.files || []);
+    if (urls.length) {
+      const imageHtml = urls.map((url) => `<img src="${url}" alt="Uploaded image">`).join('');
+      setForm((prev) => ({ ...prev, body: `${prev.body}${imageHtml}` }));
+    }
+    event.target.value = '';
+  }
+
+  async function copyPageUrl() {
+    if (!form.slug) return;
+    try {
+      await navigator.clipboard.writeText(`${window.location.origin}/content/${encodeURIComponent(form.slug)}`);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      alert('Clipboard access is unavailable in this browser.');
     }
   }
 
@@ -285,6 +341,7 @@ function ContentManager({ content, search, onSearch, editing, form, setForm, onN
           <div className="panel-heading"><div><span className="eyebrow">{editing ? 'EDIT CONTENT' : 'NEW ENTRY'}</span><h2>{editing ? 'Update content' : 'Create content'}</h2></div>{editing && <button type="button" className="icon-button" title="New content" aria-label="New content" onClick={onNew}><Plus size={17} /></button>}</div>
           <label>Title<input required maxLength="160" value={form.title} onChange={(event) => setForm({ ...form, title: event.target.value })} /></label>
           <label>URL slug<div className="slug-field"><span>/content/</span><input required pattern="[a-z0-9]+(-[a-z0-9]+)*" value={form.slug} onChange={(event) => setForm({ ...form, slug: event.target.value.toLowerCase().replace(/\s+/g, '-') })} /></div></label>
+          <div className="copy-url-row"><span>{window.location.origin}/content/{form.slug || 'your-page-slug'}</span><button type="button" className="text-button" onClick={copyPageUrl} disabled={!form.slug}><Copy size={14} /> {copied ? 'Copied' : 'Copy URL'}</button></div>
           <div className="form-pair"><label>Type<select value={form.type} onChange={(event) => setForm({ ...form, type: event.target.value })}><option value="page">Page</option><option value="post">Post</option></select></label><label>Status<select value={form.status} onChange={(event) => setForm({ ...form, status: event.target.value })}><option value="draft">Draft</option><option value="published">Published</option></select></label></div>
           <label>Summary<textarea rows="2" maxLength="500" value={form.excerpt} onChange={(event) => setForm({ ...form, excerpt: event.target.value })} /></label>
           <div className="content-field" role="group" aria-labelledby="content-field-label">
@@ -308,11 +365,11 @@ function ContentManager({ content, search, onSearch, editing, form, setForm, onN
                 </button>
               </div>
             </div>
-            <input type="file" accept="image/*" ref={fileInputRef} style={{ display: 'none' }} onChange={handleImageUpload} />
+            <input type="file" accept="image/*" multiple ref={fileInputRef} style={{ display: 'none' }} onChange={handleImageUpload} />
             {showPreview ? (
               <div className="content-body" style={{ border: '1px solid #dce3de', borderRadius: '3px', padding: '12px', minHeight: '180px', background: '#fff', fontSize: '14px' }} dangerouslySetInnerHTML={{ __html: form.body || '<i>Nothing to preview yet...</i>' }} />
             ) : (
-              <RichTextEditor value={form.body} onChange={(content) => setForm((current) => ({ ...current, body: content }))} />
+              <RichTextEditor value={form.body} onChange={(content) => setForm((current) => ({ ...current, body: content }))} onUploadImages={uploadImages} />
             )}
           </div>
           <details className="seo-fields"><summary>Search appearance</summary><label>SEO title<input maxLength="180" value={form.seoTitle} onChange={(event) => setForm({ ...form, seoTitle: event.target.value })} /></label><label>Meta description<textarea rows="2" maxLength="320" value={form.seoDescription} onChange={(event) => setForm({ ...form, seoDescription: event.target.value })} /></label></details>

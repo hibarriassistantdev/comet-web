@@ -2,7 +2,7 @@ import React from 'react';
 import { Search, Megaphone, TrendingUp, Presentation, Users, Workflow, Send, Image, Clapperboard, Target, BotMessageSquare, Crown, CheckCircle, ArrowRight, Phone, MessageCircle, Sparkles, Rocket, UserPlus, UserSearch, Activity, Goal, Palette, PackagePlus } from 'lucide-react';
 
 // Each item's href MUST match the slug seeded into the DB
-const megaMenuData = [
+export const megaMenuData = [
   {
     category: 'Leads & Sales',
     items: [

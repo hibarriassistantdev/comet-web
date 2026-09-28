@@ -38,7 +38,21 @@
 .content-figure figcaption { text-align:center; margin-top:8px; font-size:13px; color:#8a9c92; font-style:italic; }
 .content-body a { color:#e95435; font-weight:600; text-decoration:underline; }
 .content-body ul,.content-body ol { padding-left:24px; margin:0 0 20px; }
-.content-body li { margin-bottom:6px; }
+.content-body ul { list-style:disc !important; }
+.content-body ol { list-style:decimal !important; }
+.content-body li { display:list-item; margin-bottom:6px; }
+.sitemap-page article { max-width:900px; margin:8vh auto 80px; }
+.sitemap-page section { margin:34px 0; }
+.sitemap-page section h2 { border-bottom:1px solid #e2e8e4; padding-bottom:8px; }
+.sitemap-page ul { list-style:disc; padding-left:24px; }
+.sitemap-page li { margin:8px 0; }
+.sitemap-page a { color:#d94a2d; text-decoration:underline; }
+.sitemap-xml-link { margin-top:42px; }
+.copy-url-row { display:flex; align-items:center; justify-content:space-between; gap:10px; min-width:0; padding:8px 10px; background:#f4f7f4; color:#69776f; font:10px 'DM Mono',monospace; overflow-wrap:anywhere; }
+.copy-url-row .text-button { flex-shrink:0; }
+.copy-url-row button:disabled { opacity:.5; cursor:not-allowed; }
+.gsc-links { display:flex; flex-wrap:wrap; gap:14px; margin:-6px 0 18px; }
+.gsc-links a { color:var(--admin-green); display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:700; text-decoration:none; }
 .content-body blockquote { border-left:4px solid #e95435; margin:28px 0; padding:16px 20px; background:#fff3f0; border-radius:0 8px 8px 0; color:#5e3a2a; font-style:italic; }
 .content-body code { background:#f0f2f0; border-radius:4px; padding:2px 6px; font-family:'DM Mono',monospace; font-size:0.88em; color:#e95435; }
 .content-body pre { background:#1e2822; border-radius:10px; padding:20px; overflow-x:auto; margin:24px 0; }

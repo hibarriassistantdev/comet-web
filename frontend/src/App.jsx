@@ -7,6 +7,7 @@ import FreeDemoFooter from './components/FreeDemoFooter';
 import { countryData } from './data/countries';
 import AdminApp from './components/admin/AdminApp';
 import ContentPage from './components/ContentPage';
+import SitemapPage from './components/SitemapPage';
 import ServicePage from './components/ServicePage';
 import { usePageviewTracking } from './hooks/usePageviewTracking';
 import Footer from './components/Footer';
@@ -69,6 +70,17 @@ export default function App() {
 
   if (window.location.pathname === '/admin' || window.location.pathname.startsWith('/admin/')) {
     return <AdminApp />;
+  }
+
+  if (window.location.pathname === '/sitemap' || window.location.pathname === '/sitemap/') {
+    return (
+      <div className="min-h-screen bg-white text-slate-900 font-sans flex flex-col">
+        <Header />
+        <div className="flex-1"><SitemapPage /></div>
+        <FreeDemoFooter country={country} />
+        <Footer country={country} />
+      </div>
+    );
   }
 
   if (window.location.pathname.startsWith('/content/')) {
