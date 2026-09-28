@@ -11,10 +11,16 @@ cloudinary.config({
 
 const router = Router();
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 5 * 1024 * 1024 } }); // 5MB limit
+const storageConfigured = Boolean(process.env.CLOUDINARY_NAME && process.env.CLOUDINARY_API_KEY && process.env.CLOUDINARY_API_SECRET);
 
 router.use(requireAdmin);
 
-router.post('/', upload.single('image'), async (req, res) => {
+router.post('/', (req, res, next) => {
+  if (!storageConfigured) {
+    return res.status(503).json({ error: 'Image uploads are not configured. Set the Cloudinary environment variables on the backend.' });
+  }
+  return upload.single('image')(req, res, next);
+}, async (req, res) => {
   if (!req.file) return res.status(400).json({ error: 'No image provided.' });
 
   try {

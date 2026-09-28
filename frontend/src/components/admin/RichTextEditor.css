@@ -60,6 +60,26 @@
   margin-top: 0.75em;
 }
 
+.ProseMirror > p,
+.ProseMirror > h1,
+.ProseMirror > h2,
+.ProseMirror > h3,
+.ProseMirror > ul,
+.ProseMirror > ol,
+.ProseMirror > img {
+  cursor: grab;
+}
+
+.ProseMirror > p:active,
+.ProseMirror > h1:active,
+.ProseMirror > h2:active,
+.ProseMirror > h3:active,
+.ProseMirror > ul:active,
+.ProseMirror > ol:active,
+.ProseMirror > img:active {
+  cursor: grabbing;
+}
+
 .ProseMirror h1 {
   font-size: 2rem;
   font-weight: bold;

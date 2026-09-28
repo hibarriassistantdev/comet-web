@@ -22,4 +22,10 @@ In production, configure `VITE_API_BASE_URL` to the API origin at frontend build
 - Visitor and page-view totals, daily unique visitor chart, and popular pages.
 - Draft/published pages and posts served at `/content/:slug`, with basic SEO metadata.
 - The admin organic-search panel queries Google Search Console for clicks, impressions, and average position. Enable the Search Console API, grant the backend service-account email access to the verified property, and configure `GOOGLE_SEARCH_CONSOLE_SITE_URL`, `GOOGLE_SERVICE_ACCOUNT_EMAIL`, and `GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY` in the backend environment. Queries end three days before today to account for Search Console reporting delays.
+- The sitemap is available to visitors at `/sitemap` and as XML at `/api/content/sitemap.xml`. Set `PUBLIC_SITE_URL` to the canonical public origin when it differs from `FRONTEND_ORIGIN`.
+- CMS image uploads require the `CLOUDINARY_NAME`, `CLOUDINARY_API_KEY`, and `CLOUDINARY_API_SECRET` backend environment variables.
 - Visitor analytics uses a random browser identifier stored in local storage. Add the appropriate privacy notice/consent flow for the site's jurisdictions before production deployment.
+
+### Google Search Console setup
+
+Create a Google Cloud service account, enable the Search Console API, and add the service-account email as a user on the verified Search Console property. Configure the exact property URL (including `sc-domain:` or the protocol and trailing slash as appropriate), the service-account email, and its private key in the backend environment. For a multiline key stored as one environment value, encode line breaks as `\n`. Restart or redeploy the backend after setting the variables; the admin overview will show live data when the connection succeeds.

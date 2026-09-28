@@ -9,6 +9,8 @@ const contentSchema = new mongoose.Schema({
   body: { type: String, default: '', maxlength: 100000 },
   seoTitle: { type: String, default: '', maxlength: 180 },
   seoDescription: { type: String, default: '', maxlength: 320 },
+  previousSlugs: { type: [String], default: [] },
+  draftProgress: { type: mongoose.Schema.Types.Mixed, default: null },
 }, { timestamps: true });
 
 export default mongoose.model('Content', contentSchema);
