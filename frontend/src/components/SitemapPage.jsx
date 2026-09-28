@@ -37,7 +37,7 @@ export default function SitemapPage() {
             <ul>{pages.filter((page) => !SERVICES.some((service) => service.slug === page.slug)).map((page) => <li key={page.slug}><a href={`/content/${encodeURIComponent(page.slug)}`}>{page.title}</a></li>)}</ul>
           ) : <p>No published pages or posts yet.</p>}
         </section>
-        <p className="sitemap-xml-link"><a href={`${import.meta.env.VITE_API_BASE_URL || 'https://comet-web-1.onrender.com'}/api/content/sitemap.xml`}>XML sitemap for search engines</a></p>
+        <p className="sitemap-xml-link"><a href="/sitemap.xml">XML sitemap for search engines</a></p>
       </article>
     </main>
   );
