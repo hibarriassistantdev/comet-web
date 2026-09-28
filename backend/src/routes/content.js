@@ -6,7 +6,7 @@ const router = Router();
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 router.get('/sitemap.xml', async (req, res) => {
-  const baseUrl = (process.env.PUBLIC_SITE_URL || process.env.FRONTEND_ORIGIN || `${req.protocol}://${req.get('host')}`).replace(/\/+$/, '');
+  const baseUrl = (process.env.PUBLIC_SITE_URL || process.env.FRONTEND_ORIGIN || 'https://www.comet100.com').replace(/\/+$/, '');
   const pages = await Content.find({ status: 'published' }).select('slug').lean();
   const serviceSlugs = [
     'lead-generation', 'sales-enablement', 'conversion-rate-optimisation', 'seo', 'ai-voice-agent',
