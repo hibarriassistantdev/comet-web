@@ -262,14 +262,14 @@ function Overview({ analytics, range, onRange, onOpenContent }) {
         <section className="panel search-panel">
           <div className="panel-heading">
             <div><span className="eyebrow">ORGANIC SEARCH</span><h2>Google page ranking</h2></div>
-            {analytics?.googleSearchConsole?.configured ? <span className="live-status"><i />LIVE DATA</span> : <span className="coming-soon">SETUP REQUIRED</span>}
+            {analytics?.googleSearchConsole?.configured ? <span className="live-status"><i />CONNECTED</span> : <span className="coming-soon">SETUP REQUIRED</span>}
           </div>
           <p>{analytics?.googleSearchConsole?.message || 'Search Console connection is required to show page clicks, impressions, and average position.'}</p>
           <div className="gsc-links"><a href="https://search.google.com/search-console" target="_blank" rel="noreferrer">Open Search Console <ArrowUpRight size={13} /></a><a href="https://console.cloud.google.com/apis/library/searchconsole.googleapis.com" target="_blank" rel="noreferrer">Enable Search Console API <ArrowUpRight size={13} /></a></div>
           <div className="search-metrics">
-            <div><strong>{analytics?.googleSearchConsole?.clicks?.toLocaleString() || '—'}</strong><span>CLICKS</span></div>
-            <div><strong>{analytics?.googleSearchConsole?.impressions?.toLocaleString() || '—'}</strong><span>IMPRESSIONS</span></div>
-            <div><strong>{analytics?.googleSearchConsole?.avgPosition || '—'}</strong><span>AVG. POSITION</span></div>
+            <div><strong>{analytics?.googleSearchConsole?.configured ? (analytics.googleSearchConsole.clicks ?? 0).toLocaleString() : '—'}</strong><span>CLICKS</span></div>
+            <div><strong>{analytics?.googleSearchConsole?.configured ? (analytics.googleSearchConsole.impressions ?? 0).toLocaleString() : '—'}</strong><span>IMPRESSIONS</span></div>
+            <div><strong>{analytics?.googleSearchConsole?.avgPosition ?? '—'}</strong><span>AVG. POSITION</span></div>
           </div>
         </section>
       </div>
