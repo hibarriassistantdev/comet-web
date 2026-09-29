@@ -5,16 +5,15 @@ const packages = [
     name: "Starter",
     usdPrice: 4999,
     features: [
-      "3 brands max",
-      "300 social media posts",
-      "15 social channels limit",
+      "150 social media posts",
+      "5 social channels limit",
       "15 email sequences",
-      "150 SEO pages",
-      "180 graphic designs",
-      "1,500 social target comments",
-      "10,000 cold email leads",
+      "60 SEO pages",
+      "90 graphic designs",
+      "1,500 social media comments",
+      "10,000 email leads",
       "100,000 monthly emails",
-      "1 strategy session",
+      "1 strategy sessio",
       "100 consultation messages"
     ]
   },
@@ -22,39 +21,37 @@ const packages = [
     name: "Growth",
     usdPrice: 9999,
     features: [
-      "8 brands max",
-      "900 social media posts",
-      "24 social channels limit",
+      "300 social media posts",
+      "8 social channels limit",
       "30 email sequences",
-      "400 SEO pages",
-      "210 graphic designs",
-      "5,000 social target comments",
-      "25,000 cold email leads",
+      "120 SEO pages",
+      "180 graphic designs",
+      "4,500 social media comments",
+      "25,000 email leads",
       "300,000 monthly emails",
-      "1 strategy session",
+      "2 strategy sessions",
       "250 consultation messages",
-      "10 Campaigns Google Paid Ads Management",
-      "10 Campaigns Social Media Paid Ads Management"
+      "5 Campaigns Google Paid Ads Management",
+      "5 Campaigns Social Media Paid Ads Management"
     ]
   },
   {
     name: "Critical Mass",
     usdPrice: 14999,
     features: [
-      "12 brands max",
-      "1,800 social media posts",
-      "40 social channels limit",
+      "600 social media posts",
+      "15 social channels limit",
       "60 email sequences",
-      "600 SEO pages",
+      "150 SEO pages",
       "390 graphic designs",
-      "3,600 social target comments",
-      "50,000 cold email leads",
-      "600,000 monthly emails",
-      "1 strategy session",
+      "6,000 social media comments",
+      "50,000 email leads",
+      "500,000 monthly emails",
+      "3 strategy sessions",
       "1 followup strategy session",
       "500 consultation messages",
-      "20 Campaigns Google Paid Ads Management",
-      "20 Campaigns Social Media Paid Ads Management"
+      "10 Campaigns Google Paid Ads Management",
+      "10 Campaigns Social Media Paid Ads Management"
     ]
   }
 ];
