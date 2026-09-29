@@ -6,7 +6,7 @@ import './admin.css';
 import RichTextEditor from './RichTextEditor';
 import { SERVICES } from '../../data/services';
 
-const emptyForm = { title: '', slug: '', type: 'page', status: 'draft', excerpt: '', body: '', seoTitle: '', seoDescription: '' };
+const emptyForm = { title: '', slug: '', type: 'page', status: 'draft', excerpt: '', body: '', seoTitle: '', seoDescription: '', coverImage: '' };
 
 export default function AdminApp() {
   const [admin, setAdmin] = useState(null);
@@ -313,8 +313,7 @@ function ContentManager({ content, search, onSearch, editing, form, setForm, onN
   async function handleImageUpload(event) {
     const urls = await uploadImages(event.target.files || []);
     if (urls.length) {
-      const imageHtml = urls.map((url) => `<img src="${url}" alt="Uploaded image">`).join('');
-      setForm((prev) => ({ ...prev, body: `${prev.body}${imageHtml}` }));
+      setForm((prev) => ({ ...prev, coverImage: urls[0] }));
     }
     event.target.value = '';
   }
@@ -344,6 +343,26 @@ function ContentManager({ content, search, onSearch, editing, form, setForm, onN
           <div className="copy-url-row"><span>{window.location.origin}/content/{form.slug || 'your-page-slug'}</span><button type="button" className="text-button" onClick={copyPageUrl} disabled={!form.slug}><Copy size={14} /> {copied ? 'Copied' : 'Copy URL'}</button></div>
           <div className="form-pair"><label>Type<select value={form.type} onChange={(event) => setForm({ ...form, type: event.target.value })}><option value="page">Page</option><option value="post">Post</option></select></label><label>Status<select value={form.status} onChange={(event) => setForm({ ...form, status: event.target.value })}><option value="draft">Draft</option><option value="published">Published</option></select></label></div>
           <label>Summary<textarea rows="2" maxLength="500" value={form.excerpt} onChange={(event) => setForm({ ...form, excerpt: event.target.value })} /></label>
+          <div className="content-field" role="group" aria-labelledby="image-field-label" style={{ marginBottom: '16px' }}>
+            <div className="flex items-center justify-between mb-2">
+              <span id="image-field-label">Cover Image</span>
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                disabled={uploadingImage}
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', fontSize: '13px', background: 'none', border: 'none', color: '#ff4500', cursor: 'pointer', fontWeight: 'bold' }}
+              >
+                <ImageIcon size={14} /> {uploadingImage ? 'Uploading...' : form.coverImage ? 'Replace Image' : 'Upload Image'}
+              </button>
+            </div>
+            {form.coverImage && (
+              <div style={{ position: 'relative', marginTop: '8px' }}>
+                <img src={form.coverImage} alt="Cover" style={{ maxWidth: '100%', maxHeight: '200px', objectFit: 'cover', borderRadius: '4px' }} />
+                <button type="button" onClick={() => setForm(prev => ({ ...prev, coverImage: '' }))} style={{ position: 'absolute', top: '8px', right: '8px', background: 'rgba(0,0,0,0.5)', color: 'white', border: 'none', borderRadius: '50%', padding: '4px', cursor: 'pointer' }}><Trash2 size={14} /></button>
+              </div>
+            )}
+            <input type="file" accept="image/*" ref={fileInputRef} style={{ display: 'none' }} onChange={handleImageUpload} />
+          </div>
           <div className="content-field" role="group" aria-labelledby="content-field-label">
             <div className="flex items-center justify-between mb-2">
               <span id="content-field-label">Content</span>
@@ -355,17 +374,8 @@ function ContentManager({ content, search, onSearch, editing, form, setForm, onN
                 >
                   {showPreview ? <EyeOff size={14} /> : <Eye size={14} />} {showPreview ? 'Edit' : 'Preview'}
                 </button>
-                <button
-                  type="button"
-                  onClick={() => fileInputRef.current?.click()}
-                  disabled={uploadingImage}
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', fontSize: '13px', background: 'none', border: 'none', color: '#ff4500', cursor: 'pointer', fontWeight: 'bold' }}
-                >
-                  <ImageIcon size={14} /> {uploadingImage ? 'Uploading...' : 'Insert Image'}
-                </button>
               </div>
             </div>
-            <input type="file" accept="image/*" multiple ref={fileInputRef} style={{ display: 'none' }} onChange={handleImageUpload} />
             {showPreview ? (
               <div className="content-body" style={{ border: '1px solid #dce3de', borderRadius: '3px', padding: '12px', minHeight: '180px', background: '#fff', fontSize: '14px' }} dangerouslySetInnerHTML={{ __html: form.body || '<i>Nothing to preview yet...</i>' }} />
             ) : (

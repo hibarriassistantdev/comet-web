@@ -34,7 +34,10 @@ const ImageBlock = Node.create({
   },
 });
 
-const MenuBar = ({ editor }) => {
+const MenuBar = ({ editor, onUploadImages }) => {
+  const fileInputRef = useRef(null);
+  const [uploading, setUploading] = React.useState(false);
+
   if (!editor) {
     return null;
   }
@@ -54,6 +57,23 @@ const MenuBar = ({ editor }) => {
 
     editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run()
   }
+
+  const handleImageChange = async (event) => {
+    const files = event.target.files;
+    if (!files || !files.length || !onUploadImages) return;
+    setUploading(true);
+    try {
+      const urls = await onUploadImages(files);
+      if (urls && urls.length) {
+        urls.forEach(src => {
+          editor.chain().focus().insertContent({ type: 'image', attrs: { src, alt: 'Uploaded image' } }).run();
+        });
+      }
+    } finally {
+      setUploading(false);
+    }
+    event.target.value = '';
+  };
 
   return (
     <div className="rich-text-menu">
@@ -122,6 +142,14 @@ const MenuBar = ({ editor }) => {
       >
         Unlink
       </button>
+      <button
+        type="button"
+        onClick={() => fileInputRef.current?.click()}
+        disabled={uploading}
+      >
+        {uploading ? 'Uploading...' : 'Image'}
+      </button>
+      <input type="file" accept="image/*" multiple ref={fileInputRef} style={{ display: 'none' }} onChange={handleImageChange} />
     </div>
   )
 }
@@ -183,7 +211,7 @@ const RichTextEditor = ({ value, onChange, onUploadImages }) => {
 
   return (
     <div className="rich-text-editor-container">
-      <MenuBar editor={editor} />
+      <MenuBar editor={editor} onUploadImages={onUploadImages} />
       <EditorContent editor={editor} />
     </div>
   );

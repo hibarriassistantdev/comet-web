@@ -24,7 +24,7 @@ router.get('/sitemap.xml', async (req, res) => {
 
 router.get('/public', async (_req, res) => {
   const content = await Content.find({ status: 'published' })
-    .select('title slug type')
+    .select('title slug type coverImage')
     .sort({ title: 1 })
     .lean();
   return res.json({ content });
@@ -33,7 +33,7 @@ router.get('/public', async (_req, res) => {
 router.get('/public/:slug', async (req, res) => {
   const slug = req.params.slug.toLowerCase();
   const content = await Content.findOne({ status: 'published', $or: [{ slug }, { previousSlugs: slug }] })
-    .select('title slug type excerpt body seoTitle seoDescription updatedAt');
+    .select('title slug type excerpt body coverImage seoTitle seoDescription updatedAt');
   if (!content) return res.status(404).json({ error: 'Page not found.' });
   return res.json({ content });
 });
@@ -130,6 +130,7 @@ function validateContent(body = {}) {
     body: String(body.body || '').slice(0, 100000),
     seoTitle: String(body.seoTitle || '').slice(0, 180),
     seoDescription: String(body.seoDescription || '').slice(0, 320),
+    coverImage: String(body.coverImage || '').trim(),
   } };
 }
 
