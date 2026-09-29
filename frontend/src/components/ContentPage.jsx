@@ -35,6 +35,11 @@ export default function ContentPage({ slug }) {
         <p className="content-kicker">{content.type === 'post' ? 'JOURNAL' : 'COMET'}</p>
         <h1>{content.title}</h1>
         {content.excerpt && <p className="content-excerpt">{content.excerpt}</p>}
+        {content.coverImage && (
+          <div className="content-cover-image" style={{ margin: '2rem 0' }}>
+            <img src={content.coverImage} alt={content.title} style={{ width: '100%', borderRadius: '8px', objectFit: 'cover', maxHeight: '500px' }} />
+          </div>
+        )}
         <div className="content-body">
           {isHtml ? (
             <div dangerouslySetInnerHTML={{ __html: content.body }} />
