@@ -199,18 +199,18 @@ export default function HeroSection({ country }) {
                 </p> */}
                 <h2 className="text-[#ff4500] font-black uppercase leading-none tracking-tight"
                   style={{ fontSize: 'clamp(2.4rem, 5vw, 3.6rem)' }}>
-                  THE BACKBONE
+                  MASS MARKETING
                 </h2>
                 <h1 className="text-slate-800 font-black uppercase leading-none tracking-tight mt-1"
                   style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.1rem)' }}>
-                  OF YOUR MARKETING AGENCY
+                  AT LIGHTSPEED
                 </h1>
               </div>
 
               {/* Sub-paragraph */}
               <p className="hero-sub max-w-xl text-[#ff4500] font-medium leading-relaxed"
                 style={{ fontSize: 'clamp(0.95rem, 1.4vw, 1.15rem)' }}>
-                We absorb high-volume workload from agencies that need to deliver more work, faster, without expanding their internal teams.
+                We absorb high-volume workload from businesses that need to rapidly get more customers without expanding their internal teams.
               </p>
 
               {/* CTA buttons */}
